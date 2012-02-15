@@ -1,0 +1,7 @@
+syntax: glob
+
+*~
+*.pyc
+.*.swp
+vim/last-session.vim
+vim/google.vimrc
