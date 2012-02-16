@@ -5,3 +5,6 @@ syntax: glob
 .*.swp
 vim/last-session.vim
 vim/google.vimrc
+.git
+.gitattributes
+.gitignore
