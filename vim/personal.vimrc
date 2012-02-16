@@ -357,6 +357,10 @@ nnoremap <C-y> 3<C-y>
 " Visual bell
 set visualbell
 
+" For taglist to work correctly per
+" http://groups.google.com/group/eclim-user/browse_thread/thread/feaef5416af60715
+let g:taglisttoo_disabled = 1
+
 " Save last session
 autocmd VimLeave * mksession! ~/.vim/last-session.vim
 

@@ -1,0 +1,18 @@
+# Mercurial configuration file
+# See hgrc(5) for more information
+
+# User Interface settings
+[ui]
+ssh = ssh -C
+username= Nick Piepmeier <nick@pieps.org>
+editor=vim
+merge=meld
+
+# Enabled extensions
+[extensions]
+#hgext.gpg=
+hgext.convert=
+
+# GPG extension settings
+#[gpg]
+#key=<your private gpg key>
