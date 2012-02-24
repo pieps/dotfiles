@@ -93,6 +93,35 @@ set noswapfile
 "map <C-]> g<C-]>
 "map <C-Y> <C-]>
 
+" Find the buffer whose name (partially) matches the input and switch focus to
+" it, or open it here.
+function! s:FindWindowFun(expr)
+  let n = bufwinnr(bufname(a:expr))
+  if n > 0 && buflisted(a:expr)
+    exe n . "wincmd w"
+  else
+    exe "edit " . a:expr
+  endif
+endfunction
+command! -nargs=1 -complete=custom,ListBuffersAndFiles FindWindow call s:FindWindowFun("<args>")
+
+function s:EnumerateBuffers()
+  let l:n = bufnr("$")
+  let l:output = []
+  for i in range(1,n)
+    if bufexists(i) && buflisted(i)
+      call add(l:output, bufname(i))
+    endif
+  endfor
+  return join(l:output, "\n")
+endfunction
+
+fun ListBuffersAndFiles(A,L,P)
+  let l:files = system("ls")
+  let l:buffers = s:EnumerateBuffers()
+  return (l:buffers . "\n" . l:files)
+endfun
+
 " A command to search in the tags file for project filenames. Faster than :e
 command -complete=custom,FindInProjectFun -nargs=1 FindInProject e <args>
 function FindInProjectFun(A,L,P)
@@ -124,7 +153,7 @@ noremap <C-S-k> <C-w>j<C-w>_
 noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
 
-map <M-b> :buffers<CR>:b 
+map <M-b> :buffers<CR>:FindWindow 
 map <silent> <M-d> :b 1<CR>:bd #
 map <silent> <M-o> :FSHere<CR>
 map <M-r> :b #<CR>
