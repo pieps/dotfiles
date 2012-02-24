@@ -95,31 +95,37 @@ set noswapfile
 
 " Find the buffer whose name (partially) matches the input and switch focus to
 " it, or open it here.
-function! s:FindWindowFun(expr)
+" TODO(pieps): Find out how to make buffer numbers work here too.
+" TODO(pieps): Ignore case on buffer.
+function s:FindWindowFun(expr)
   let n = bufwinnr(bufname(a:expr))
-  if n > 0 && buflisted(a:expr)
-    exe n . "wincmd w"
+  if buflisted(a:expr)
+    if n > 0
+      exe n . "wincmd w"
+    else
+      exe "buffer " . a:expr
+    endif
   else
     exe "edit " . a:expr
   endif
 endfunction
-command! -nargs=1 -complete=custom,ListBuffersAndFiles FindWindow call s:FindWindowFun("<args>")
+command -nargs=1 -complete=custom,ListBuffersAndFiles FindWindow call s:FindWindowFun("<args>")
 
 function s:EnumerateBuffers()
-  let l:n = bufnr("$")
-  let l:output = []
+  let n = bufnr("$")
+  let output = []
   for i in range(1,n)
     if bufexists(i) && buflisted(i)
-      call add(l:output, bufname(i))
+      call add(output, bufname(i))
     endif
   endfor
-  return join(l:output, "\n")
+  return join(output, "\n")
 endfunction
 
 fun ListBuffersAndFiles(A,L,P)
-  let l:files = system("ls")
-  let l:buffers = s:EnumerateBuffers()
-  return (l:buffers . "\n" . l:files)
+  let files = system("ls -a")
+  let buffers = s:EnumerateBuffers()
+  return (buffers . "\n" . files)
 endfun
 
 " A command to search in the tags file for project filenames. Faster than :e
