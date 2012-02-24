@@ -3,8 +3,10 @@ syntax: glob
 *~
 *.pyc
 .*.swp
+vim/.netrwhist
 vim/last-session.vim
 vim/google.vimrc
 .git
 .gitattributes
 .gitignore
+.wmii-hg/history.progs
