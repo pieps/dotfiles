@@ -217,7 +217,7 @@ augroup QFixToggle
 augroup END
 
 " to ignore .pyc files in NERDTree:
-let NERDTreeIgnore=['\.pyc$', '\.pyc-2\.4', '^tags$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\.pyc-2\.4', '^tags$', '\~$', '\.o$']
 
 command -nargs=0 ToggleProj call ToggleProjFun()
 function ToggleProjFun()
