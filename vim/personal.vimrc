@@ -376,7 +376,9 @@ runtime macros/matchit.vim
 " Third+ tabs cycle through results
 set wildmode=list:longest,full
 set wildmenu
-set wildignorecase
+if has("wildignorecase")
+  set wildignorecase
+endif
 
 " Remap ` to '
 nnoremap ' `

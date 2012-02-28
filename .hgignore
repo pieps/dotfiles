@@ -4,6 +4,7 @@ syntax: glob
 *.pyc
 .*.swp
 vim/.netrwhist
+vim/plugin/perforce.vim
 vim/last-session.vim
 vim/google.vimrc
 .git
