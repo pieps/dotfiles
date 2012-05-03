@@ -170,7 +170,7 @@ noremap <C-S-k> <C-w>j<C-w>_
 noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
 
-map <M-b> :buffers<CR>:FindWindow 
+map <M-b> :buffers<CR>:b 
 map <silent> <M-d> :b 1<CR>:bd #
 map <silent> <M-o> :FSHere<CR>
 map <M-r> :b #<CR>
@@ -369,6 +369,10 @@ match Locking /\(Reader\|Writer\|\)MutexLock \w\+([^(]\+)\|\.Lock()\|\.Unlock()\
 let fsneednomatch = 'on'
 au! BufEnter *.cc let b:fswitchdst = 'h' | let b:fswitchlocs = '.'
 au! BufEnter *.h let b:fswitchdst = 'cc' | let b:fswitchlocs = '.'
+
+" for sane line wrapping in Java
+au BufEnter *.java setlocal cinoptions-=(0
+au BufEnter *.java setlocal cinoptions+=(2s
 
 " To preserve valuable screen real estate
 set guioptions-=m  "remove menu bar
