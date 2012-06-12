@@ -172,7 +172,8 @@ noremap <C-S-h> <C-w>l<C-w>\|
 
 map <M-b> :buffers<CR>:b 
 map <silent> <M-d> :b 1<CR>:bd #
-map <silent> <M-o> :FSHere<CR>
+" Disabling because I don't use C/C++ and I want to use M-o for :cn.
+" map <silent> <M-o> :FSHere<CR>
 map <M-r> :b #<CR>
 
 map <silent> <M-p> p=']
@@ -187,6 +188,8 @@ map <M-t> :tag
 map <M-S-s> <M-t>
 
 map <silent> <M-q> :QFix<CR>
+map <silent> <M-o> :cn<CR>
+map <silent> <M-i> :cp<CR>
 
 if has("unix")
   map <Leader><C-e> :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -197,6 +200,7 @@ else
 endif
 map <Leader>J :tabn<CR>
 map <Leader>K :tabp<CR>
+map <silent><Leader>o :FufFile<CR>
 
 " Folding!
 map <space> za
@@ -254,6 +258,9 @@ set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%
 
 " Font/colors
 colorscheme darkspectrum
+"TODO(pieps): Figure out what values I want for solarized.
+"set background=dark
+"colorscheme solarized
 "using monospace 10 now
 "set guifont=Dina:h8:cDEFAULT 
 set gfn=Monospace

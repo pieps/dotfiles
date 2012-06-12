@@ -10,7 +10,7 @@ vim/google.vimrc
 .git
 .gitattributes
 .gitignore
-.wmii-hg/history.progs
+.wmii-hg/history.*
 .xmonad/xmonad-x86_64-linux
 .xmonad/xmonad.errors
 .xmonad/xmonad.hi
