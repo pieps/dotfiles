@@ -23,7 +23,8 @@ myDmenuTitleBar =
 main :: IO ()
 main = do
      xmonad $ gnomeConfig
-       { terminal = "urxvt -sr -bg Black -fg White"
+       { --terminal = "urxvt -sr -bg Black -fg White"
+         terminal = "gnome-terminal"
        , modMask = mod4Mask
        , layoutHook = avoidStruts myLayout
        } `additionalKeys` [
