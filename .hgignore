@@ -11,3 +11,4 @@ vim/google.vimrc
 .gitattributes
 .gitignore
 .wmii-hg/history.progs
+.xmonad/xmonad.errors
