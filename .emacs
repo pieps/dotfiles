@@ -27,8 +27,8 @@
 (add-to-list 'load-path "~/.emacs.d/undo-tree")
 
 ;; Fire up Evil
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
+;;(add-to-list 'load-path "~/.emacs.d/evil")
+;;(require 'evil)
+;;(evil-mode 1)
 
 (setq x-select-enable-clipboard)
