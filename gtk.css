@@ -1,0 +1,8 @@
+@binding-set NoKeyboardNavigation {
+  unbind "<shift>F10"
+  unbind "Menu"
+}
+
+* {
+  gtk-key-bindings: NoKeyboardNavigation
+}

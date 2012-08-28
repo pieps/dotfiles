@@ -1,0 +1,6 @@
+binding "NoKeyboardNavigation" {
+  unbind "<shift>F10"
+  unbind "Menu"
+}
+
+class "*" binding "NoKeyboardNavigation"
