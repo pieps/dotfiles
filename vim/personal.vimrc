@@ -98,8 +98,8 @@ set noswapfile
 " TODO(pieps): Find out how to make buffer numbers work here too.
 " TODO(pieps): Ignore case on buffer.
 function s:FindWindowFun(expr)
-  let n = bufwinnr(bufname(a:expr))
-  if buflisted(a:expr)
+    let n = bufwinnr(bufname(a:expr))
+  if bufname(a:expr) && buflisted(a:expr)
     if n > 0
       exe n . "wincmd w"
     else
@@ -111,6 +111,17 @@ function s:FindWindowFun(expr)
 endfunction
 command -nargs=1 -complete=custom,ListBuffersAndFiles FindWindow call s:FindWindowFun("<args>")
 
+function s:MatchBuffers(A, bufs)
+  let matches = []
+  for buf in a:bufs
+    " TODO(pieps): Match camelcase here too
+    if stridx(buf, a:A) > -1
+      call add(matches, buf)
+    endif
+  endfor
+  return matches
+endfunction
+
 function s:EnumerateBuffers()
   let n = bufnr("$")
   let output = []
@@ -119,13 +130,13 @@ function s:EnumerateBuffers()
       call add(output, bufname(i))
     endif
   endfor
-  return join(output, "\n")
+  return output
 endfunction
 
 fun ListBuffersAndFiles(A,L,P)
-  let files = system("ls -a")
-  let buffers = s:EnumerateBuffers()
-  return (buffers . "\n" . files)
+  let files = s:MatchBuffers(a:A, split(system("ls -a"), "\n"))
+  let buffers = s:MatchBuffers(a:A, s:EnumerateBuffers())
+  return join(buffers + files, "\n")
 endfun
 
 " A command to search in the tags file for project filenames. Faster than :e
