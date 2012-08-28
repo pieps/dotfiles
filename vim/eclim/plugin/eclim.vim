@@ -116,7 +116,7 @@ endif
 
 if !exists("g:EclimHome")
   " set at build/install time.
-  let g:EclimHome = '/usr/local/google/users/pieps/eclipse38/testing/plugins/org.eclim_1.7.4'
+  let g:EclimHome = '/usr/local/google/users/pieps/eclipse38/testing/plugins/org.eclim_1.7.6'
   if has('win32unix')
     let g:EclimHome = eclim#cygwin#CygwinPath(g:EclimHome)
   endif

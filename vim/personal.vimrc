@@ -402,6 +402,10 @@ if has("wildignorecase")
   set wildignorecase
 endif
 
+" Better autocompletion
+" Complete until unique prefix, then show menu
+set completeopt+=longest
+
 " Remap ` to '
 nnoremap ' `
 nnoremap ` '
@@ -425,3 +429,6 @@ autocmd VimLeave * mksession! ~/.vim/last-session.vim
 
 " For Conque to keep it updating
 let g:ConqueTerm_ReadUnfocused = 1
+
+" Make indendtation for go correct
+au BufRead,BufNewFile *.go set noet ts=4 sw=4
