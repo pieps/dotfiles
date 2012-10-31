@@ -32,3 +32,7 @@
 ;;(evil-mode 1)
 
 (setq x-select-enable-clipboard)
+
+;; turn on go-mode
+(add-to-list 'load-path "~/go/misc/emacs" t)
+(require 'go-mode-load)
