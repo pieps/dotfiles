@@ -170,7 +170,8 @@ noremap <C-S-k> <C-w>j<C-w>_
 noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
 
-map <M-b> :buffers<CR>:b 
+" map <M-b> :buffers<CR>:b 
+map <M-b> :FufBuffer<CR>
 map <silent> <M-d> :b 1<CR>:bd #
 " Disabling because I don't use C/C++ and I want to use M-o for :cn.
 " map <silent> <M-o> :FSHere<CR>
@@ -313,7 +314,7 @@ map _u :call ID_search()<Bar>execute "/\\<" . g:word . "\\>"<CR>
 	endfun
 
 
-set tags=./tags,tags
+"set tags=./tags,tags
 " For omnicppcomplete
 filetype plugin on
 

@@ -12,6 +12,12 @@ merge=meld
 [extensions]
 #hgext.gpg=
 hgext.convert=
+pager =
+
+[pager]
+pager = less
+quiet = True
+attend = diff,help,log,qdiff,blame,annotate,pdiff,glog
 
 # GPG extension settings
 #[gpg]
