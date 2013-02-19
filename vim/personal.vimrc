@@ -151,7 +151,7 @@ command RebuildProjTags !ctags --c++-kinds=+p --fields=+iaS --extra=+fq --langua
 " Added by nick for some Slick-like keys
 set wak=no
 " map <M-e> :e **/
-map <M-e> :FindInProject **
+" map <M-e> :FindInProject **
 " Switching these to not wrap for better l-r control
 " noremap <M-h> <C-w>W
 noremap <M-h> <C-w>h
@@ -171,7 +171,9 @@ noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
 
 " map <M-b> :buffers<CR>:b 
-map <M-b> :FufBuffer<CR>
+map <silent><M-b> :FufBuffer<CR>
+map <silent><M-f> :FufFile<CR>
+map <silent><M-S-f> :FufFileWithCurrentBufferDir<CR>
 map <silent> <M-d> :b 1<CR>:bd #
 " Disabling because I don't use C/C++ and I want to use M-o for :cn.
 " map <silent> <M-o> :FSHere<CR>
@@ -189,8 +191,8 @@ map <M-t> :tag
 map <M-S-s> <M-t>
 
 map <silent> <M-q> :QFix<CR>
-map <silent> <M-o> :cn<CR>
-map <silent> <M-i> :cp<CR>
+map <silent> <M-w> :cp<CR>
+map <silent> <M-e> :cn<CR>
 
 if has("unix")
   map <Leader><C-e> :e <C-R>=expand("%:p:h") . "/" <CR>
