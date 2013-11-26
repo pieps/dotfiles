@@ -19,6 +19,9 @@ pager = less
 quiet = True
 attend = diff,help,log,qdiff,blame,annotate,pdiff,glog
 
+[web]
+cacerts = /etc/ssl/certs/ca-certificates.crt
+
 # GPG extension settings
 #[gpg]
 #key=<your private gpg key>
