@@ -17,22 +17,56 @@
 ;; stop at the end of the file, not just add lines
 (setq next-line-add-newlines nil)
 
+;; tabs look like 2 spaces
+(setq default-tab-width 2)
+
 (when window-system
   ;; enable wheelmouse support by default
   (mwheel-install)
   ;; use extended compound-text coding for X clipboard
   (set-selection-coding-system 'compound-text-with-extensions))
 
-;; undo-tree
-(add-to-list 'load-path "~/.emacs.d/undo-tree")
-
-;; Fire up Evil
-;;(add-to-list 'load-path "~/.emacs.d/evil")
-;;(require 'evil)
-;;(evil-mode 1)
-
 (setq x-select-enable-clipboard)
 
+(require 'package)
+(add-to-list 'package-archives 
+  '("marmalade" .
+    "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;; Fire up Evil
+(require 'evil)
+(evil-mode 1)
+
 ;; turn on go-mode
-(add-to-list 'load-path "~/go/misc/emacs" t)
 (require 'go-mode-load)
+
+;; Turn on yasnippet
+(require 'yasnippet)
+
+;; auto-complete-clang
+;;(add-to-list 'load-path (expand-file-name "~/src/emacs/auto-complete-clang"))
+;;(require 'auto-complete-clang)
+
+;; Irony
+;;(add-to-list 'load-path (expand-file-name "~/src/emacs/irony-mode/elisp/"))
+;;(require 'auto-complete)
+;;(require 'irony)
+;;(irony-enable 'ac)
+;;(defun my-c++-hooks ()
+	;;(yas/minor-mode-on)
+	;;(auto-complete-mode 1)
+	;;(irony-mode 1))
+
+;;(add-hook 'c++-mode-hook 'my-c++-hooks)
+;;(add-hook 'c-mode-hook 'my-c-hooks)
+
+;; Autocomplete for go
+(add-to-list 'load-path (expand-file-name "~/src/golang/src/github.com/nsf/gocode/emacs/"))
+(require 'go-autocomplete)
+;; Turn on autocomplete
+(require 'auto-complete-config)
+
+(add-to-list 'ac-modes 'go-mode)
+(add-to-list 'ac-modes 'c-mode)
+(add-to-list 'ac-modes 'c++-mode)

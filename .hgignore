@@ -5,7 +5,7 @@ syntax: glob
 .*.swp
 vim/.netrwhist
 vim/eclim
-vim/plugin/perforce.vim
+vim/bundle
 vim/last-session.vim
 vim/google.vimrc
 .git
