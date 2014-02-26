@@ -1,13 +1,16 @@
 syntax: glob
 
+\#*\#
 *~
 *.pyc
 .*.swp
 vim/.netrwhist
-vim/eclim
 vim/bundle
+vim/data/log
+vim/eclim
 vim/last-session.vim
 vim/google.vimrc
+.emacs.d/ac-comphist.dat
 .emacs.d/elpa/*
 .git
 .gitattributes
