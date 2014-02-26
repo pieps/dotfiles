@@ -21,4 +21,6 @@ Bundle 'ShowMarks'
 Bundle 'simple-pairs'
 Bundle 'Syntastic'
 Bundle 'taglist.vim'
-Bundle 'Valloric/YouCompleteMe'
+if !filereadable("/home/pieps/.vim/google.vimrc")
+  Bundle 'Valloric/YouCompleteMe'
+endif
