@@ -29,6 +29,14 @@
   ;; use extended compound-text coding for X clipboard
   (set-selection-coding-system 'compound-text-with-extensions))
 
+;;
+;; pieps' additions
+;;
+
+;; Turn on Google magic
+(if (file-exists-p "/home/pieps/dotfiles/google.el")
+		(load-file "/home/pieps/dotfiles/google.el"))
+
 (setq x-select-enable-clipboard)
 
 (require 'package)
@@ -41,56 +49,109 @@
 (require 'evil)
 (evil-mode 1)
 
-;; turn on go-mode
-(require 'go-mode)
+;; Turn off toolbar
+(tool-bar-mode -1)
 
-;; Turn on yasnippet
-(require 'yasnippet)
+;; Column number mode
+(setq column-number-mode t)
 
-;; auto-complete-clang
-;;(add-to-list 'load-path (expand-file-name "~/src/emacs/auto-complete-clang"))
-;;(require 'auto-complete-clang)
+;; Always auto-revert buffers when they change on the filesystem
+(global-auto-revert-mode)
 
-;; Irony
-(add-to-list 'load-path (expand-file-name "~/src/emacs/irony-mode/elisp/"))
-(require 'auto-complete)
-(require 'irony)
-(irony-enable 'ac)
-(defun my-c++-hooks ()
-	(yas/minor-mode-on)
-	(auto-complete-mode 1)
-	(irony-mode 1))
+;; Turn on midnight mode
+(setq midnight-mode t)
+(midnight-delay-set 'midnight-delay "3:00am")
 
-(add-hook 'c++-mode-hook 'my-c++-hooks)
-(add-hook 'c-mode-hook 'my-c++-hooks)
+(global-set-key "\C-x\C-r" 'revert-buffer)
+(global-set-key "\C-x\C-l" 'goto-line)
+(global-set-key [f5] 'google-compile)
+(global-set-key [f6] 'next-error)
+(global-set-key "\M-h" 'evil-window-left)
+(global-set-key "\M-H" 'evil-window-move-far-left)
+(global-set-key "\M-j" 'evil-window-down)
+(global-set-key "\M-J" 'evil-window-move-very-bottom)
+(global-set-key "\M-k" 'evil-window-up)
+(global-set-key "\M-K" 'evil-window-move-very-top)
+(global-set-key "\M-l" 'evil-window-right)
+(global-set-key "\M-L" 'evil-window-move-far-right)
+(global-set-key "\M-n" 'evil-ex-nohighlight)
+(global-set-key "\C-x\C-o" 'rotate-windows)
 
-;; Autocomplete for go
-(add-to-list 'load-path (expand-file-name "~/src/golang/src/github.com/nsf/gocode/emacs/"))
-(require 'go-autocomplete)
-;; Turn on autocomplete
-(require 'auto-complete-config)
-;; Autocomplete for go
-;;(add-to-list 'load-path (expand-file-name "~/src/golang/src/github.com/nsf/gocode/emacs/"))
-;;(require 'go-autocomplete)
+(defvar user-temporary-file-directory "/tmp/.emacs-autosaves" )
 
-(global-auto-complete-mode t)
-(add-to-list 'ac-modes 'go-mode)
-;;(add-to-list 'ac-modes 'c-mode)
-;;(add-to-list 'ac-modes 'c++-mode)
+;; Put autosave files (ie #foo#) in one place, *not* scattered all over the
+;; file system! (The make-autosave-file-name function is invoked to determine
+;; the filename of an autosave file.)
+(defvar autosave-dir "/tmp/.emacs-autosaves/")
+(make-directory autosave-dir t)
 
-;; Autocomplete for C/C++
-(add-to-list 'load-path "~/.emacs.d/auto-complete-clang-async")
-(require 'auto-complete-clang-async)
+(defun auto-save-file-name-p (filename)
+  (string-match "^#.*#$" (file-name-nondirectory filename)))
 
-(defun ac-cc-mode-setup ()
-	(setq ac-clang-complete-executable "~/.emacs.d/auto-complete-clang-async/clang-complete")
-	(setq ac-sources '(ac-source-clang-async))
-	(ac-clang-launch-completion-process)
-)
+(defun make-auto-save-file-name ()
+  (concat autosave-dir
+   (if buffer-file-name
+      (concat "#" (file-name-nondirectory buffer-file-name) "#")
+    (expand-file-name
+     (concat "#%" (buffer-name) "#")))))
 
-(defun my-ac-config ()
-	(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-	(add-hook 'auto-complete-mode-hook 'ac-common-setup)
-	(global-auto-complete-mode t))
+;; Put backup files (ie foo~) in one place too. (The backup-directory-alist
+;; list contains regexp=>directory mappings; filenames matching a regexp are
+;; backed up in the corresponding directory. Emacs will mkdir it if necessary.)
+(defvar backup-dir "/tmp/.emacs-backups/")
+(setq backup-directory-alist (list (cons "." backup-dir)))
 
-(my-ac-config)
+;; Additions via Kai
+(require 'compilation-colorization) ;; colorizes output of (i)grep
+
+(setq auto-mode-alist (cons '("\\.js$" . java-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.tpl$" . html-mode) auto-mode-alist))
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(indent-tabs-mode nil))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+;; Proper indentation
+(add-hook 'java-mode-hook (lambda () (c-set-offset 'arglist-cont-nonempty '++)))
+
+;; Switch between cc and h
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd "M-o") 'ff-find-other-file)))
+
+;; stevey's rotate windows function
+(defun rotate-windows ()
+  "Rotate your windows"
+  (interactive)
+  (cond
+   ((not (> (count-windows) 1))
+    (message "You can't rotate a single window!"))
+   (t
+    (setq i 1)
+    (setq numWindows (count-windows))
+    (while  (< i numWindows)
+      (let* (
+             (w1 (elt (window-list) i))
+             (w2 (elt (window-list) (+ (% i numWindows) 1)))
+             (b1 (window-buffer w1))
+             (b2 (window-buffer w2))
+             (s1 (window-start w1))
+             (s2 (window-start w2)))
+        (set-window-buffer w1  b2)
+        (set-window-buffer w2 b1)
+        (set-window-start w1 s2)
+        (set-window-start w2 s1)
+        (setq i (1+ i)))))))
+
+(if (file-exists-p "/home/pieps/dotfiles/personal.el")
+		(load-file "/home/pieps/dotfiles/personal.el"))

@@ -8,8 +8,7 @@ vim/eclim
 vim/bundle
 vim/last-session.vim
 vim/google.vimrc
-.emacs.d/ac-comphist.dat
-.emacs.d/elpa
+.emacs.d/elpa/*
 .git
 .gitattributes
 .gitignore

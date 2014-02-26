@@ -136,3 +136,13 @@ func DiffSetup()
   wincmd =
   winpos 0 0
 endfun
+
+" Expand cword in command mode
+cmap <C-t> <C-R>=expand('<cword>')<CR>
+
+"Search in file's directory
+nmap <M-v> :vim //j <C-R>=expand("%:p:h")<CR>/**/*.java<C-f>^f/a
+
+"Search for current word in file's directory
+nmap <M-S-v> :vim /<C-R>=expand("<cword>")<CR>/j <C-R>=expand("%:p:h")<CR>
+
