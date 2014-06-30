@@ -49,6 +49,12 @@
 (require 'evil)
 (evil-mode 1)
 
+;; Turn on Ace Jump
+(require 'ace-jump-mode)
+
+(if (file-exists-p "/home/pieps/dotfiles/ace_evil_config.el")
+		(load-file "/home/pieps/dotfiles/ace_evil_config.el"))
+
 ;; Turn off toolbar
 (tool-bar-mode -1)
 

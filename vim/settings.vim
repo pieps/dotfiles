@@ -56,7 +56,7 @@ let g:SuperTabSetDefaultCompletionType="context"
 let g:SuperTabContextDefaultCompletionType="<c-x><c-u>"
 
 " Disable automatic validation on save (for Eclim)
-let g:EclimJavaSrcValidate=0
+"let g:EclimJavaSrcValidate=0
 
 set ignorecase smartcase
 
