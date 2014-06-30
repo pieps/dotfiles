@@ -22,10 +22,12 @@ noremap <C-S-h> <C-w>l<C-w>\|
 
 " I've been hitting the emacs a bit hard lately
 noremap <C-g> <Esc>
-map <C-x><C-b> :FufBuffer<CR>
+"map <C-x><C-b> :FufBuffer<CR>
+map <C-x><C-b> :CtrlPBuffer<CR>
 
 " map <Esc>b :buffers<CR>:b 
-map <silent><Esc>b :FufBuffer<CR>
+"map <silent><Esc>b :FufBuffer<CR>
+map <silent><Esc>b :CtrlPBuffer<CR>
 map <silent><Esc>f :FufFile<CR>
 map <silent><Esc><S-f> :FufFileWithCurrentBufferDir<CR>
 map <silent> <Esc>d :b 1<CR>:bd #
@@ -77,3 +79,4 @@ nnoremap ` '
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+map <Leader>i :JavaImport
