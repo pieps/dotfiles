@@ -34,8 +34,8 @@
 ;;
 
 ;; Turn on Google magic
-(if (file-exists-p "/home/pieps/dotfiles/google.el")
-		(load-file "/home/pieps/dotfiles/google.el"))
+(if (file-exists-p "~/dotfiles/google.el")
+		(load-file "~/dotfiles/google.el"))
 
 (if (file-exists-p "/Users/pieps/dotfiles/google.el")
 		(load-file "/Users/pieps/dotfiles/google.el"))
@@ -55,8 +55,8 @@
 ;; Turn on Ace Jump
 (require 'ace-jump-mode)
 
-(if (file-exists-p "/home/pieps/dotfiles/ace_evil_config.el")
-		(load-file "/home/pieps/dotfiles/ace_evil_config.el"))
+(if (file-exists-p "~/dotfiles/ace_evil_config.el")
+		(load-file "~/dotfiles/ace_evil_config.el"))
 
 (if (file-exists-p "/Users/pieps/dotfiles/ace_evil_config.el")
 		(load-file "/Users/pieps/dotfiles/ace_evil_config.el"))
@@ -165,9 +165,5 @@
         (set-window-start w2 s1)
         (setq i (1+ i)))))))
 
-(if (file-exists-p "/home/pieps/dotfiles/personal.el")
-		(load-file "/home/pieps/dotfiles/personal.el"))
-
-(if (file-exists-p "/Users/pieps/dotfiles/personal.el")
-		(load-file "/Users/pieps/dotfiles/personal.el"))
-    
+(if (file-exists-p "~/dotfiles/personal.el")
+		(load-file "~/dotfiles/personal.el"))
