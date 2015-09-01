@@ -141,3 +141,6 @@ bind ^] paste [.]
 # hardstatus alwaysignore
 # hardstatus alwayslastline "%w"
 
+
+
+escape ^\\
