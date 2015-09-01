@@ -4,12 +4,14 @@ syntax: glob
 *~
 *.pyc
 .*.swp
+google.el
 vim/.netrwhist
 vim/bundle
 vim/data/log
 vim/eclim
 vim/last-session.vim
 vim/google.vimrc
+vim/plugin/eclim.vim
 .emacs.d/ac-comphist.dat
 .emacs.d/elpa/*
 .git

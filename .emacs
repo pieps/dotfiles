@@ -33,21 +33,20 @@
 ;; pieps' additions
 ;;
 
-;; Turn on Google magic
-(if (file-exists-p "~/dotfiles/google.el")
-		(load-file "~/dotfiles/google.el"))
-
-(if (file-exists-p "/Users/pieps/dotfiles/google.el")
-		(load-file "/Users/pieps/dotfiles/google.el"))
-
-(setq x-select-enable-clipboard)
-
 (require 'package)
 (add-to-list 'package-archives 
   '("marmalade" .
     "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives 
+  '("melpa" .
+    "https://melpa.org/packages/"))
 (package-initialize)
 
+;; Turn on Google magic
+(if (file-exists-p "~/dotfiles/google.el")
+		(load-file "~/dotfiles/google.el"))
+
+(setq x-select-enable-clipboard)
 ;; Fire up Evil
 (require 'evil)
 (evil-mode 1)
@@ -88,6 +87,7 @@
 (global-set-key "\M-L" 'evil-window-move-far-right)
 (global-set-key "\M-n" 'evil-ex-nohighlight)
 (global-set-key "\C-x\C-o" 'rotate-windows)
+(global-set-key "\C-e" 'move-end-of-line)
 
 (defvar user-temporary-file-directory "/tmp/.emacs-autosaves" )
 
