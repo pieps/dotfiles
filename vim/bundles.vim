@@ -18,10 +18,11 @@ Bundle 'multvals.vim'
 "Bundle 'project.vim'
 Bundle 'ReplaceWithRegister'
 Bundle 'scrooloose/nerdtree'
-Bundle 'ShowMarks'
-Bundle 'simple-pairs'
+"Bundle 'simple-pairs'
+Bundle 'jacquesbh/vim-showmarks'
 Bundle 'Syntastic'
 Bundle 'taglist.vim'
-if !filereadable("/home/pieps/.vim/google.vimrc")
+Bundle 'Vimacs'
+if !filereadable(expand("~/.vim/google.vimrc"))
   Bundle 'Valloric/YouCompleteMe'
 endif

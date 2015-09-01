@@ -57,6 +57,8 @@ let g:SuperTabContextDefaultCompletionType="<c-x><c-u>"
 
 " Disable automatic validation on save (for Eclim)
 "let g:EclimJavaSrcValidate=0
+" Eclim completion for YCM.
+let g:EclimCompletionMethod = 'omnifunc'
 
 set ignorecase smartcase
 
@@ -129,3 +131,5 @@ let g:ConqueTerm_ReadUnfocused = 1
 au BufRead,BufNewFile *.go set noet ts=4 sw=4
 
 let g:ycm_extra_conf_globlist = ['~/src/cpp/*', '!~/*']
+
+call showmarks#ShowMarks('global,enable')

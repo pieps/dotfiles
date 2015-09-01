@@ -51,8 +51,8 @@ endif
 " Set up vundle
 filetype off
 
-if filereadable("/home/pieps/.vim/bundles.vim")
-  source /home/pieps/.vim/bundles.vim
+if filereadable(expand("~/.vim/bundles.vim"))
+  source ~/.vim/bundles.vim
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -87,20 +87,20 @@ else
 
 endif " has("autocmd")
 
-if filereadable("/home/pieps/.vim/settings.vim")
-  source /home/pieps/.vim/settings.vim
+if filereadable(expand("~/.vim/settings.vim"))
+  source ~/.vim/settings.vim
 endif
 
-if filereadable("/home/pieps/.vim/functions.vim")
-  source /home/pieps/.vim/functions.vim
+if filereadable(expand("~/.vim/functions.vim"))
+  source ~/.vim/functions.vim
 endif
 
-if filereadable("/home/pieps/.vim/hotkeys.vim")
-  source /home/pieps/.vim/hotkeys.vim
+if filereadable(expand("~/.vim/hotkeys.vim"))
+  source ~/.vim/hotkeys.vim
 endif
 
 " Load Google-internal stuff
-if filereadable("/home/pieps/.vim/google.vimrc")
-  source /home/pieps/.vim/google.vimrc
+if filereadable(expand("~/.vim/google.vimrc"))
+  source ~/.vim/google.vimrc
 endif
 
