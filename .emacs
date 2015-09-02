@@ -119,16 +119,17 @@
 (setq auto-mode-alist (cons '("\\.js$" . java-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tpl$" . html-mode) auto-mode-alist))
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(indent-tabs-mode nil))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(indent-tabs-mode nil)
+ '(python-indent-offset 2))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 ;; Proper indentation
 (add-hook 'java-mode-hook (lambda () (c-set-offset 'arglist-cont-nonempty '++)))
