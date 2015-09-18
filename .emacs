@@ -37,6 +37,9 @@
 (if (file-exists-p "/home/pieps/dotfiles/google.el")
 		(load-file "/home/pieps/dotfiles/google.el"))
 
+(if (file-exists-p "/Users/pieps/dotfiles/google.el")
+		(load-file "/Users/pieps/dotfiles/google.el"))
+
 (setq x-select-enable-clipboard)
 
 (require 'package)
@@ -55,8 +58,11 @@
 (if (file-exists-p "/home/pieps/dotfiles/ace_evil_config.el")
 		(load-file "/home/pieps/dotfiles/ace_evil_config.el"))
 
+(if (file-exists-p "/Users/pieps/dotfiles/ace_evil_config.el")
+		(load-file "/Users/pieps/dotfiles/ace_evil_config.el"))
+
 ;; Turn off toolbar
-(tool-bar-mode -1)
+;; (tool-bar-mode -1)
 
 ;; Column number mode
 (setq column-number-mode t)
@@ -161,3 +167,7 @@
 
 (if (file-exists-p "/home/pieps/dotfiles/personal.el")
 		(load-file "/home/pieps/dotfiles/personal.el"))
+
+(if (file-exists-p "/Users/pieps/dotfiles/personal.el")
+		(load-file "/Users/pieps/dotfiles/personal.el"))
+    
