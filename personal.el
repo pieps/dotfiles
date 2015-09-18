@@ -1,11 +1,14 @@
 (if (not (file-exists-p (expand-file-name "~/.at_work")))
     (progn
-      ;; Turn on yasnippet
-      (require 'yasnippet)
+      ;; clang-format
+      (load "/usr/local/share/clang/clang-format.el")
+      (global-set-key [C-M-tab] 'clang-format-region)
+      
+			;; turn on go-mode
+			(require 'go-mode)
 
-      ;; auto-complete-clang
-      ;;(add-to-list 'load-path (expand-file-name "~/src/emacs/auto-complete-clang"))
-      ;;(require 'auto-complete-clang)
+			;; Turn on yasnippet
+			;; (require 'yasnippet)
 
       ;; Irony
       (add-to-list 'load-path (expand-file-name "~/src/emacs/irony-mode/elisp/"))
