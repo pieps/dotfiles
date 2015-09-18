@@ -80,3 +80,6 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 map <Leader>i :JavaImport
+
+" Go to definition via YCM.
+nnoremap <C-]> :YcmCompleter GoToDefinition<CR>
