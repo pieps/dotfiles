@@ -49,8 +49,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Set up vundle
-filetype off
-
 if filereadable(expand("~/.vim/bundles.vim"))
   source ~/.vim/bundles.vim
 endif

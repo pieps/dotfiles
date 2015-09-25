@@ -1,29 +1,33 @@
 " Load all bundles with vundle
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 "TODO(pieps): Clean up existing plugins, install here.
-Bundle 'Blackrush/vim-gocode'
-Bundle 'cscope.vim'
-Bundle 'EasyMotion'
-Bundle 'ervandew/supertab'
-Bundle 'FSwitch'
-Bundle 'ctrlp.vim'
-"Bundle 'FuzzyFinder'
-Bundle 'genutils'
-Bundle 'keepcase.vim'
-Bundle 'L9'
-Bundle 'multvals.vim'
-"Bundle 'project.vim'
-Bundle 'ReplaceWithRegister'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'simple-pairs'
-Bundle 'jacquesbh/vim-showmarks'
-Bundle 'Syntastic'
-Bundle 'taglist.vim'
-Bundle 'Vimacs'
+Plugin 'Blackrush/vim-gocode'
+"Plugin 'cscope.vim'
+Plugin 'EasyMotion'
+Plugin 'ervandew/supertab'
+Plugin 'FSwitch'
+Plugin 'ctrlp.vim'
+"Plugin 'FuzzyFinder'
+Plugin 'genutils'
+Plugin 'keepcase.vim'
+Plugin 'L9'
+Plugin 'multvals.vim'
+"Plugin 'project.vim'
+Plugin 'ReplaceWithRegister'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'simple-pairs'
+Plugin 'jacquesbh/vim-showmarks'
+Plugin 'Syntastic'
+Plugin 'taglist.vim'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'Vimacs'
 if !filereadable(expand("~/.vim/google.vimrc"))
-  Bundle 'Valloric/YouCompleteMe'
+  Plugin 'Valloric/YouCompleteMe'
 endif
+call vundle#end()
+filetype plugin indent on
