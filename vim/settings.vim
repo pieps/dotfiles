@@ -131,5 +131,7 @@ let g:ConqueTerm_ReadUnfocused = 1
 au BufRead,BufNewFile *.go set noet ts=4 sw=4
 
 let g:ycm_extra_conf_globlist = ['~/src/cpp/*', '!~/*']
+let g:ycm_autoclose_preview_window_after_completion=1
+
 
 call showmarks#ShowMarks('global,enable')

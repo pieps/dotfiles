@@ -82,4 +82,4 @@ nnoremap <C-y> 3<C-y>
 map <Leader>i :JavaImport
 
 " Go to definition via YCM.
-nnoremap <C-]> :YcmCompleter GoToDefinition<CR>
+nnoremap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>

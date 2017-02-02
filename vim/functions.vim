@@ -98,7 +98,8 @@ endfunction
 com Fullscreen call Fullscreen()
 
 function DeWhitespace()
-  %s/^\s\+$//g
+  "%s/^\s\+$//g
+  %s/\s\+$//g
 endfunction
 
 com DeWhitespace call DeWhitespace()
