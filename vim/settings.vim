@@ -115,10 +115,6 @@ let g:ConqueTerm_ReadUnfocused = 1
 au BufRead,BufNewFile *.go set noet ts=4 sw=4
 
 let g:ycm_extra_conf_globlist = ['~/src/cpp/*', '!~/*']
-let g:ycm_autoclose_preview_window_after_completion=1
-
-" Disable keycode delays
-set ttimeoutlen=0
-
+let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.11.0/src'
 
 call showmarks#ShowMarks('global,enable')
