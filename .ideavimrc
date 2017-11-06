@@ -1,0 +1,18 @@
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
+noremap <A-S-h> :action MoveEditorToOppositeTabGroup<CR>
+noremap <A-S-j> :action VimMotionNextTab<CR>
+noremap <A-S-k> :action VimMotionPreviousTab<CR>
+noremap <A-S-l> :action MoveEditorToOppositeTabGroup<CR>
+
+noremap <C-S-l> <C-w>h<C-w>\|
+noremap <C-S-k> <C-w>j<C-w>_
+noremap <C-S-j> <C-w>k<C-w>_
+noremap <C-S-h> <C-w>l<C-w>\|
+
+noremap <Leader>f :action ReformatCode<CR>
+noremap <Leader>v :action SelectAllOccurrences<CR>
+
+set ignorecase smartcase
