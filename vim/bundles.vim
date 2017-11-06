@@ -25,7 +25,7 @@ Plugin 'jacquesbh/vim-showmarks'
 Plugin 'Syntastic'
 Plugin 'taglist.vim'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'Vimacs'
+"Plugin 'Vimacs'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'rust-lang/rust.vim'
 if !filereadable(expand("~/.vim/google.vimrc"))
