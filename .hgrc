@@ -4,9 +4,9 @@
 # User Interface settings
 [ui]
 ssh = ssh -C
-username= Nick Piepmeier <nick@pieps.org>
+username=pieps
 editor=vim
-merge=meld
+merge=vimdiff
 
 # Enabled extensions
 [extensions]

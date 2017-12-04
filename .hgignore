@@ -3,6 +3,7 @@ syntax: glob
 \#*\#
 *~
 *.pyc
+*.orig
 .*.swp
 google.el
 vim/.netrwhist
