@@ -21,6 +21,8 @@ vimdiff.premerge = keep
 #hgext.gpg=
 hgext.convert=
 pager =
+shelve=
+evolve=
 
 [pager]
 pager = less

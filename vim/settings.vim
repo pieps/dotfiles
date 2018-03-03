@@ -116,5 +116,11 @@ au BufRead,BufNewFile *.go set noet ts=4 sw=4
 
 let g:ycm_extra_conf_globlist = ['~/src/cpp/*', '!~/*']
 let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.11.0/src'
+let g:ycm_autoclose_preview_window_after_completion=1
+"let g:ycm_server_python_interpreter = '/usr/bin/python'
+
+" Disable keycode delays
+set ttimeoutlen=0
+
 
 call showmarks#ShowMarks('global,enable')
