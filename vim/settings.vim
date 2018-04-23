@@ -15,9 +15,6 @@ set wak=no
 " Highlight long lines!
 set colorcolumn=+1
 
-" to ignore .pyc files in NERDTree:
-let NERDTreeIgnore=['\.pyc$', '\.pyc-2\.4', '^tags$', '\~$', '\.o$']
-
 " status bar at bottom
 set laststatus=2
 set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
@@ -40,7 +37,7 @@ set winwidth=20
 
 " This _should_ allow me to resize the window to larger than one screen, but
 " it doesn't...
-set cpo+=\|
+" set cpo+=\|
 
 " make sure changes aren't abandoned when switching buffers
 set hidden
@@ -51,22 +48,13 @@ set autoread
 " Enable omnicomplete
 set ofu=syntaxcomplete#Complete
 
-" Set user defined completion as default (for Eclim)
-let g:SuperTabSetDefaultCompletionType="context"
-let g:SuperTabContextDefaultCompletionType="<c-x><c-u>"
-
-" Disable automatic validation on save (for Eclim)
-"let g:EclimJavaSrcValidate=0
-" Eclim completion for YCM.
-let g:EclimCompletionMethod = 'omnifunc'
-
 set ignorecase smartcase
 
 let g:ctags_statusline=1
 
-if &diff
-  autocmd VimEnter * call DiffSetup()
-endif
+"if &diff
+  "autocmd VimEnter * call DiffSetup()
+"endif
 
 " P4 integration part III: reading //depot files
 autocmd BufReadCmd //depot/* exe "0r !p4 print -q <afile>"
@@ -116,10 +104,6 @@ set scrolloff=3
 
 " Visual bell
 set visualbell
-
-" For taglist to work correctly per
-" http://groups.google.com/group/eclim-user/browse_thread/thread/feaef5416af60715
-let g:taglisttoo_disabled = 1
 
 " Save last session
 autocmd VimLeave * mksession! ~/.vim/last-session.vim

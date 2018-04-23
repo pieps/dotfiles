@@ -129,14 +129,14 @@ command! -nargs=* -complete=command Redir
       \ setl nomodified 
 
 " Make diffing nicer (from http://www.corp.google.com/~laurence/vim/)
-func DiffSetup()
-  set nofoldenable foldcolumn=0 number
-  wincmd b
-  set nofoldenable foldcolumn=0 number
-  let &columns = &columns * 2
-  wincmd =
-  winpos 0 0
-endfun
+"func DiffSetup()
+  "set nofoldenable foldcolumn=0 number
+  "wincmd b
+  "set nofoldenable foldcolumn=0 number
+  "let &columns = &columns * 2
+  "wincmd =
+  "winpos 0 0
+"endfun
 
 " Expand cword in command mode
 cmap <C-t> <C-R>=expand('<cword>')<CR>
@@ -147,3 +147,20 @@ nmap <M-v> :vim //j <C-R>=expand("%:p:h")<CR>/**/*.java<C-f>^f/a
 "Search for current word in file's directory
 nmap <M-S-v> :vim /<C-R>=expand("<cword>")<CR>/j <C-R>=expand("%:p:h")<CR>
 
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+command! Buffers call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })

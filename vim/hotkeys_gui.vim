@@ -64,9 +64,6 @@ map <space> za
 map <C-space> $zfa%
 map <S-space> zd
 
-" Eclim validate!
-map <Leader>v :Validate<CR>
-
 noremap <Leader>w :DeWhitespace<cr>
 
 " Remap ` to '
