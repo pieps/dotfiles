@@ -1,35 +1,29 @@
 " Load all bundles with vundle
 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-"TODO(pieps): Clean up existing plugins, install here.
-Plugin 'Blackrush/vim-gocode'
-"Plugin 'cscope.vim'
-Plugin 'EasyMotion'
-Plugin 'ervandew/supertab'
-Plugin 'FSwitch'
-Plugin 'ctrlp.vim'
-"Plugin 'FuzzyFinder'
-Plugin 'genutils'
-Plugin 'keepcase.vim'
-Plugin 'L9'
-Plugin 'multvals.vim'
-"Plugin 'project.vim'
-Plugin 'ReplaceWithRegister'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'simple-pairs'
-Plugin 'jacquesbh/vim-showmarks'
-Plugin 'Syntastic'
-Plugin 'taglist.vim'
-Plugin 'marijnh/tern_for_vim'
-"Plugin 'Vimacs'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'rust-lang/rust.vim'
+call plug#begin('~/.vim/bundle')
+Plug 'Blackrush/vim-gocode'
+Plug 'easymotion/vim-easymotion'
+Plug 'ervandew/supertab'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'vim-scripts/genutils'
+Plug 'vim-scripts/keepcase.vim'
+Plug 'vim-scripts/L9'
+Plug 'vim-scripts/multvals.vim'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jacquesbh/vim-showmarks'
+Plug 'marijnh/tern_for_vim'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'w0rp/ale'
+" TODO(pieps): Configure correctly; resolve conflict with internal version.
+"Plug 'google/vim-codefmt'
 if !filereadable(expand("~/.vim/google.vimrc"))
-  Plugin 'Valloric/YouCompleteMe'
+  Plug 'Valloric/YouCompleteMe'
 endif
-call vundle#end()
+call plug#end()
 filetype plugin indent on

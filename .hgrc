@@ -6,7 +6,15 @@
 ssh = ssh -C
 username=pieps
 editor=vim
-merge=vimdiff
+merge = vimdiff
+
+[defaults]
+addremove = --similarity 75
+
+[merge-tools]
+vimdiff.executable = vimdiff
+vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
+vimdiff.premerge = keep
 
 # Enabled extensions
 [extensions]
@@ -21,6 +29,15 @@ attend = diff,help,log,qdiff,blame,annotate,pdiff,glog
 
 [web]
 cacerts = /etc/ssl/certs/ca-certificates.crt
+
+[alias]
+borrow = !p4 pack -c $1 | sed "/^\t/s/\t//p ; /^====.*====\$/,\$p ; d" | $HG import -e - -p0
+# Using the 'my' prefix since `hg lint` will eventually be directly supported,
+# so let's not hide it with this alias.
+mylint = ! DIR=$(p4 g4d $(hg exportedcl $1)) && cd $DIR && p4 lint
+
+[google]
+mail.default-rev=only(., p4head)
 
 # GPG extension settings
 #[gpg]

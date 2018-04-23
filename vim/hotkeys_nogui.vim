@@ -22,17 +22,10 @@ noremap <C-S-h> <C-w>l<C-w>\|
 
 " I've been hitting the emacs a bit hard lately
 noremap <C-g> <Esc>
-"map <C-x><C-b> :FufBuffer<CR>
-map <C-x><C-b> :CtrlPBuffer<CR>
 
 " map <Esc>b :buffers<CR>:b 
-"map <silent><Esc>b :FufBuffer<CR>
-map <silent><Esc>b :CtrlPBuffer<CR>
-map <silent><Esc>f :FufFile<CR>
-map <silent><Esc><S-f> :FufFileWithCurrentBufferDir<CR>
+nnoremap <Esc>b :Buffers<CR>
 map <silent> <Esc>d :b 1<CR>:bd #
-" Disabling because I don't use C/C++ and I want to use Esc-o for :cn.
-" map <silent> <Esc>o :FSHere<CR>
 map <Esc>r :b #<CR>
 
 map <silent> <Esc>p p=']
@@ -40,8 +33,6 @@ map <silent> <Esc>n :noh<CR>
 map <silent> <Esc-=> =aB
 
 map <Esc-/> /\c
-
-map <Esc><S-o> :ToggleProj<CR>
 
 map <Esc>t :tag 
 map <Esc><S-s> <Esc>t
@@ -66,9 +57,6 @@ map <space> za
 map <C-space> $zfa%
 map <S-space> zd
 
-" Eclim validate!
-map <Leader>v :Validate<CR>
-
 noremap <Leader>w :DeWhitespace<cr>
 
 " Remap ` to '
@@ -83,3 +71,5 @@ map <Leader>i :JavaImport
 
 " Go to definition via YCM.
 nnoremap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+nnoremap <C-p> :FZF<CR>
