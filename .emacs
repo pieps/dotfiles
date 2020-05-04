@@ -1,4 +1,4 @@
-;; Red Hat Linux default .emacs initialization file  ; -*- mode: emacs-lisp -*-
+;; red Hat Linux default .emacs initialization file  ; -*- mode: emacs-lisp -*-
 
 ;; Set up the keyboard so the delete key on both the regular keyboard
 ;; and the keypad delete the character under the cursor and to the right
@@ -57,9 +57,6 @@
 (if (file-exists-p "~/dotfiles/ace_evil_config.el")
 		(load-file "~/dotfiles/ace_evil_config.el"))
 
-(if (file-exists-p "/Users/pieps/dotfiles/ace_evil_config.el")
-		(load-file "/Users/pieps/dotfiles/ace_evil_config.el"))
-
 ;; Turn off toolbar
 ;; (tool-bar-mode -1)
 
@@ -114,7 +111,8 @@
 (setq backup-directory-alist (list (cons "." backup-dir)))
 
 ;; Additions via Kai
-(require 'compilation-colorization) ;; colorizes output of (i)grep
+;; TODO(pieps): Add to google.el.
+;;(require 'compilation-colorization) ;; colorizes output of (i)grep
 
 (setq auto-mode-alist (cons '("\\.js$" . java-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.tpl$" . html-mode) auto-mode-alist))

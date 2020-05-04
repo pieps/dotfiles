@@ -10,25 +10,29 @@
 			;; Turn on yasnippet
 			;; (require 'yasnippet)
 
-      ;; Irony
-      (add-to-list 'load-path (expand-file-name "~/src/emacs/irony-mode/elisp/"))
-      (require 'auto-complete)
-      (require 'irony)
-      (irony-enable 'ac)
-      (defun my-c++-hooks ()
-        (yas/minor-mode-on)
-        (auto-complete-mode 1)
-        (irony-mode 1))
-      (add-hook 'c++-mode-hook 'my-c++-hooks)
-      (add-hook 'c-mode-hook 'my-c++-hooks)
+			;; Turn on autocomplete
+			(require 'auto-complete-config)
+			;; Autocomplete for go
+			;;(add-to-list 'load-path (expand-file-name "~/src/golang/src/github.com/nsf/gocode/emacs/"))
+			;;(require 'go-autocomplete)
 
-      ;; Autocomplete for go
-      (add-to-list 'load-path (expand-file-name "~/src/golang/src/github.com/nsf/gocode/emacs/"))
-      (require 'go-autocomplete)
-      ;; Turn on autocomplete
-      (require 'auto-complete-config)
+			(add-to-list 'ac-modes 'go-mode)
+			;;(add-to-list 'ac-modes 'c-mode)
+			;;(add-to-list 'ac-modes 'c++-mode)
 
-      (global-auto-complete-mode t)
-      (add-to-list 'ac-modes 'go-mode)
-      (add-to-list 'ac-modes 'c-mode)
-      (add-to-list 'ac-modes 'c++-mode)))
+			;; Autocomplete for C/C++
+			(add-to-list 'load-path "~/.emacs.d/auto-complete-clang-async")
+			(require 'auto-complete-clang-async)
+
+			(defun ac-cc-mode-setup ()
+				(setq ac-clang-complete-executable "~/.emacs.d/auto-complete-clang-async/clang-complete")
+				(setq ac-sources '(ac-source-clang-async))
+				(ac-clang-launch-completion-process)
+				)
+
+			(defun my-ac-config ()
+				(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+				(add-hook 'auto-complete-mode-hook 'ac-common-setup)
+				(global-auto-complete-mode t))
+
+			(my-ac-config)))
