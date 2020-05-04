@@ -23,3 +23,5 @@ vim/plugin/eclim.vim
 .xmonad/xmonad.errors
 .xmonad/xmonad.hi
 .xmonad/xmonad.o
+fish/fishd*
+fish/config.fish
