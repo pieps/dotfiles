@@ -14,7 +14,7 @@ vim/last-session.vim
 vim/google.vimrc
 vim/plugin/eclim.vim
 .emacs.d/ac-comphist.dat
-.emacs.d/elpa/*
+.emacs.d/elpa
 .git
 .gitattributes
 .gitignore
