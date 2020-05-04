@@ -3,8 +3,8 @@ noremap <A-j> <C-w>j
 noremap <A-k> <C-w>k
 noremap <A-l> <C-w>l
 noremap <A-S-h> :action MoveEditorToOppositeTabGroup<CR>
-noremap <A-S-j> :action VimMotionNextTab<CR>
-noremap <A-S-k> :action VimMotionPreviousTab<CR>
+noremap <A-S-j> gt
+noremap <A-S-k> gT
 noremap <A-S-l> :action MoveEditorToOppositeTabGroup<CR>
 
 noremap <C-S-l> <C-w>h<C-w>\|
@@ -16,3 +16,7 @@ noremap <Leader>f :action ReformatCode<CR>
 noremap <Leader>v :action SelectAllOccurrences<CR>
 
 set ignorecase smartcase
+set easymotion
+set surround
+set multiple-cursors
+
