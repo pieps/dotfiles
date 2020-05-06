@@ -4,7 +4,7 @@ filetype off
 call plug#begin('~/.vim/bundle')
 Plug 'Blackrush/vim-gocode'
 Plug 'easymotion/vim-easymotion'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/genutils'
