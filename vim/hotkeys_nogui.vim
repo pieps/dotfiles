@@ -73,3 +73,8 @@ map <Leader>i :JavaImport
 nnoremap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 nnoremap <C-p> :FZF<CR>
+
+" Haskell fun with ALE
+autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
