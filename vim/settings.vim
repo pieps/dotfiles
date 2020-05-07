@@ -119,6 +119,10 @@ let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.11.0/src'
 let g:ycm_autoclose_preview_window_after_completion=1
 "let g:ycm_server_python_interpreter = '/usr/bin/python'
 
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
 " Disable keycode delays
 set ttimeoutlen=0
 
