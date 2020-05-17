@@ -27,3 +27,5 @@ fish/completions
 fish/conf.d
 fish/functions/__ssh_agent*
 fish/functions/nvm.fish
+node_modules
+db.json
