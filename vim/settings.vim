@@ -114,7 +114,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_linters = {'rust': 'all'}
 let g:ale_fixers = {'rust': ['rustfmt']}
-let g:ale_set_balloons = 1
+let g:ale_linters_explicit = 1
 
 " Disable keycode delays
 set ttimeoutlen=0
