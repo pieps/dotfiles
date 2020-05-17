@@ -21,6 +21,7 @@ set signcolumn=yes
 
 set termguicolors
 set mouse=a
+set pumblend=20
 
 source ~/.config/nvim/plug.vim
 source ~/.vim/settings.vim
