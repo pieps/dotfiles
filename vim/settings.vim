@@ -17,15 +17,11 @@ set colorcolumn=+1
 
 " status bar at bottom
 set laststatus=2
-set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
+" No longer relevant: set by airline.
+"set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
 
 " Font/colors
 colorscheme darkspectrum
-"TODO(pieps): Figure out what values I want for solarized.
-"set background=dark
-"colorscheme solarized
-"using monospace 10 now
-"set guifont=Dina:h8:cDEFAULT 
 set gfn=Monospace
 
 " Options for netrw (tree view)
@@ -34,10 +30,6 @@ let g:netrw_altv = 1
 
 " Make windows at least 20 chars wide when have focus
 set winwidth=20	
-
-" This _should_ allow me to resize the window to larger than one screen, but
-" it doesn't...
-" set cpo+=\|
 
 " make sure changes aren't abandoned when switching buffers
 set hidden
@@ -83,9 +75,6 @@ set guioptions-=L  "remove left-hand scroll bar (in all situations)
 " Enable extended % matching
 runtime macros/matchit.vim
 
-" Better command completion
-" Complete until unique prefix
-"set wildmode=list:longest
 " First tab completes as much as possible
 " Second tab provides a list
 " Third+ tabs cycle through results
@@ -108,9 +97,6 @@ set visualbell
 " Save last session
 autocmd VimLeave * mksession! ~/.vim/last-session.vim
 
-" For Conque to keep it updating
-let g:ConqueTerm_ReadUnfocused = 1
-
 " Make indendtation for go correct
 au BufRead,BufNewFile *.go set noet ts=4 sw=4
 
@@ -118,12 +104,19 @@ let g:ycm_extra_conf_globlist = ['~/src/cpp/*', '!~/*']
 let g:ycm_autoclose_preview_window_after_completion=1
 "let g:ycm_server_python_interpreter = '/usr/bin/python'
 
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
+
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_linters = {'rust': 'all'}
+let g:ale_fixers = {'rust': ['rustfmt']}
+let g:ale_set_balloons = 1
 
 " Disable keycode delays
 set ttimeoutlen=0
-
 
 call showmarks#ShowMarks('global,enable')

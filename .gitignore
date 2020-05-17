@@ -4,6 +4,7 @@
 *.orig
 .*.swp
 google.el
+neovim/plugged
 vim/.netrwhist
 vim/bundle
 vim/data/log
