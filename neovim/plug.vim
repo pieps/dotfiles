@@ -24,5 +24,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'troydm/zoomwintab.vim'
+Plug 'powerline/fonts'
 call plug#end()
 filetype plugin indent on
