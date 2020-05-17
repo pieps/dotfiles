@@ -29,6 +29,10 @@ pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 # shell -$SHELL
 shell fish
 
+# pieps: turn on truecolor support
+truecolor on
+colorterm truecolor
+
 # autoaka testing
 # shellaka '> |tcsh'
 # shellaka '$ |sh'
