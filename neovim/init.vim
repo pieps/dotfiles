@@ -19,6 +19,9 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
+set termguicolors
+set mouse=a
+
 source ~/.config/nvim/plug.vim
 source ~/.vim/settings.vim
 source ~/.vim/functions.vim
