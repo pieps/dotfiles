@@ -28,3 +28,8 @@ source ~/.vim/settings.vim
 source ~/.vim/functions.vim
 source ~/.vim/hotkeys.vim
 source ~/.vim/coc_recommended_settings.vim
+
+" Load Google-internal stuff
+if filereadable(expand("~/google.vimrc"))
+  source ~/google.vimrc
+endif

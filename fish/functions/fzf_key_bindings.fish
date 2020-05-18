@@ -1,1 +1,1 @@
-/home/pieps/.fzf/shell/key-bindings.fish
+/usr/local/google/home/pieps/.fzf/shell/key-bindings.fish
