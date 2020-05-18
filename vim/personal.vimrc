@@ -98,7 +98,7 @@ if filereadable(expand("~/.vim/hotkeys.vim"))
 endif
 
 " Load Google-internal stuff
-if filereadable(expand("~/.vim/google.vimrc"))
-  source ~/.vim/google.vimrc
+if filereadable(expand("~/google.vimrc"))
+  source ~/google.vimrc
 endif
 
