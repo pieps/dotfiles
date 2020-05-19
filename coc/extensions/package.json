@@ -3,7 +3,7 @@
     "coc-clangd": ">=0.4.3",
     "coc-java": ">=1.4.10",
     "coc-json": ">=1.2.6",
-    "coc-rust-analyzer": ">=0.6.5",
+    "coc-rust-analyzer": ">=0.6.6",
     "coc-snippets": ">=2.1.26"
   }
 }
