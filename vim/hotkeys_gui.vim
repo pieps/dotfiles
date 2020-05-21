@@ -17,15 +17,15 @@ noremap <C-S-h> <C-w>l<C-w>\|
 
 nnoremap <silent><M-b> :Buffers<CR>
 nnoremap <silent><M-f> :Files<CR>
-nmap <silent> <M-d> :b 1<CR>:bd #
-map <M-r> :b #<CR>
+nnoremap <silent> <M-d> :b #<CR>:bd #<CR>
+nnoremap <M-r> :b #<CR>
 
-map <silent> <M-p> p=']
-map <silent> <M-n> :noh<CR>
-map <silent> <M-=> =aB
+nnoremap <silent> <M-p> p=']
+nnoremap <silent> <M-n> :noh<CR>
+nnoremap <silent> <M-=> =aB
 
-map <M-/> /\c
+nnoremap <M-/> /\c
 
-map <silent> <M-q> :QFix<CR>
-map <silent> <M-w> :cp<CR>
-map <silent> <M-e> :cn<CR>
+nnoremap <silent> <M-q> :QFix<CR>
+nnoremap <silent> <M-w> :cp<CR>
+nnoremap <silent> <M-e> :cn<CR>

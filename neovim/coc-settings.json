@@ -1,0 +1,14 @@
+{
+  "languageserver": {
+    "ciderlsp": {
+      "command": "/google/bin/releases/editor-devtools/ciderlsp",
+      "args": ["--tooltag=nvim-lsp" , "--noforward_sync_responses"],
+      "filetypes": ["c", "cpp", "java", "proto", "textproto", "go", "swift"],
+      "rootPatterns": ["BUILD", "WORKSPACE"]
+    },
+    "IntellijLanguageServer": {
+      "filetypes": ["java"],
+      "port": 5800
+    }
+  }
+}
