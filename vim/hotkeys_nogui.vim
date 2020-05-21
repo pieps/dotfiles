@@ -12,15 +12,15 @@ noremap <Esc><S-l> <C-w>L
 
 nnoremap <Esc>b :Buffers<CR>
 nnoremap <Esc>f :Files<CR>
-map <silent> <Esc>d :b 1<CR>:bd #
-map <Esc>r :b #<CR>
+nnoremap <silent> <Esc>d :b #<CR>:bd #<CR>
+nnoremap <Esc>r :b #<CR>
 
-map <silent> <Esc>p p=']
-map <silent> <Esc>n :noh<CR>
-map <silent> <Esc-=> =aB
+nnoremap <silent> <Esc>p p=']
+nnoremap <silent> <Esc>n :noh<CR>
+nnoremap <silent> <Esc-=> =aB
 
-map <Esc-/> /\c
+nnoremap <Esc-/> /\c
 
-map <silent> <Esc>q :QFix<CR>
-map <silent> <Esc>w :cp<CR>
-map <silent> <Esc>e :cn<CR>
+nnoremap <silent> <Esc>q :QFix<CR>
+nnoremap <silent> <Esc>w :cp<CR>
+nnoremap <silent> <Esc>e :cn<CR>
