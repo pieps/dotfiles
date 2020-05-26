@@ -6,7 +6,7 @@
 ssh = ssh -C
 username=pieps
 editor=nvim
-merge = nvim
+merge = vimdiff
 
 [defaults]
 addremove = --similarity 75
