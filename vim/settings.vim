@@ -42,6 +42,8 @@ set ofu=syntaxcomplete#Complete
 
 set ignorecase smartcase
 
+set number
+
 let g:ctags_statusline=1
 
 "if &diff

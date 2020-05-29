@@ -4,9 +4,9 @@ noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
 
 " Folding!
-map <space> za
-map <C-space> $zfa%
-map <S-space> zd
+"map <space> za
+"map <C-space> $zfa%
+"map <S-space> zd
 
 " Remap ` to '
 nnoremap ' `
