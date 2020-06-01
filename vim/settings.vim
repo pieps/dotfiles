@@ -50,11 +50,6 @@ let g:ctags_statusline=1
   "autocmd VimEnter * call DiffSetup()
 "endif
 
-" P4 integration part III: reading //depot files
-autocmd BufReadCmd //depot/* exe "0r !p4 print -q <afile>"
-autocmd BufReadCmd //depot/* 1
-autocmd BufReadCmd //depot/* set readonly
-
 " Make locking code more visible
 highlight Locking term=standout ctermfg=Yellow ctermbg=Blue guifg=Yellow guibg=Blue
 match Locking /\(Reader\|Writer\|\)MutexLock \w\+([^(]\+)\|\.Lock()\|\.Unlock()\|lock_/
@@ -117,6 +112,7 @@ let g:ale_set_quickfix = 1
 let g:ale_linters = {'rust': 'all'}
 let g:ale_fixers = {'rust': ['rustfmt']}
 let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
 
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
