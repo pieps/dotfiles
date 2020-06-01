@@ -2,6 +2,7 @@
 # VERSION: 3.0
 SETUVAR EDITOR:nvim
 SETUVAR JDK_HOME:/usr/lib/jvm/java\x2d11\x2dopenjdk\x2damd64/bin/java
+SETUVAR --export RUST_BACKTRACE:1
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
