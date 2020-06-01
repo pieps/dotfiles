@@ -1,1 +1,0 @@
-/usr/local/google/home/pieps/.fzf/shell/key-bindings.fish
