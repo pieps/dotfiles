@@ -22,7 +22,6 @@ vim/plugin/eclim.vim
 .hgignore
 .hg
 fish/fishd*
-fish/config.fish
 fish/completions
 fish/conf.d
 fish/functions/__ssh_agent*
