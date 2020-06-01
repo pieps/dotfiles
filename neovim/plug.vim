@@ -26,5 +26,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
 Plug 'troydm/zoomwintab.vim'
 Plug 'powerline/fonts'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 filetype plugin indent on
