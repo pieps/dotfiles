@@ -27,6 +27,7 @@ fish/completions
 fish/conf.d
 fish/functions/__ssh_agent*
 fish/functions/nvm.fish
+fish/functions/fzf_key_bindings.fish
 node_modules
 db.json
 coc/*
