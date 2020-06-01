@@ -15,10 +15,10 @@ noremap <C-S-k> <C-w>j<C-w>_
 noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
 
-nnoremap <silent><M-b> :Buffers<CR>
-nnoremap <silent><M-f> :Files<CR>
+nnoremap <silent> <M-b> :Buffers<CR>
+nnoremap <silent> <M-f> :Ex<CR>
 nnoremap <silent> <M-d> :b #<CR>:bd #<CR>
-nnoremap <M-r> :b #<CR>
+nnoremap <silent> <M-r> <C-^>
 
 nnoremap <silent> <M-p> p=']
 nnoremap <silent> <M-n> :noh<CR>
