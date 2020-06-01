@@ -1,3 +1,3 @@
-function tn -d 'Attach to tmux session'
+function ta -d 'Attach to tmux session'
   tmux a -t $argv
 end
