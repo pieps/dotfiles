@@ -10,10 +10,10 @@ noremap <Esc><S-j> <C-w>J
 noremap <Esc><S-k> <C-w>K
 noremap <Esc><S-l> <C-w>L
 
-nnoremap <Esc>b :Buffers<CR>
-nnoremap <Esc>f :Files<CR>
+nnoremap <silent> <Esc>b :Buffers<CR>
+nnoremap <silent> <Esc>f :Ex<CR>
 nnoremap <silent> <Esc>d :b #<CR>:bd #<CR>
-nnoremap <Esc>r :b #<CR>
+nnoremap <silent> <Esc>r <C-^>
 
 nnoremap <silent> <Esc>p p=']
 nnoremap <silent> <Esc>n :noh<CR>
