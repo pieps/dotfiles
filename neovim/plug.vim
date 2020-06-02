@@ -27,5 +27,10 @@ Plug 'liuchengxu/vista.vim'
 Plug 'troydm/zoomwintab.vim'
 Plug 'powerline/fonts'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'sainnhe/sonokai'
+Plug 'sainnhe/edge'
+Plug 'arzg/vim-colors-xcode'
+Plug 'sickill/vim-monokai'
+Plug 'Mcmartelle/vim-monokai-bold'
 call plug#end()
 filetype plugin indent on
