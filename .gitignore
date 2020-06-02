@@ -30,3 +30,4 @@ fish/functions/fzf_key_bindings.fish
 node_modules
 db.json
 coc/*
+neovim/coc-settings.json
