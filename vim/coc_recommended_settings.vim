@@ -1,6 +1,7 @@
 " Custom coc.nvim settings from pieps.
 nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
 nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Recommended coc.nvim settings, from
 " https://github.com/neoclide/coc.nvim#example-vim-configuration 
