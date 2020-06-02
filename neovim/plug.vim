@@ -1,4 +1,4 @@
-" Load all bundles with vundle
+" Load all plugins with vim-plug.
 
 filetype off
 call plug#begin(stdpath('config').'/plugged')
