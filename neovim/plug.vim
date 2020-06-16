@@ -32,5 +32,7 @@ Plug 'sainnhe/edge'
 Plug 'arzg/vim-colors-xcode'
 Plug 'sickill/vim-monokai'
 Plug 'Mcmartelle/vim-monokai-bold'
+Plug 'ludovicchabant/vim-lawrencium'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 filetype plugin indent on
