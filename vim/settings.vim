@@ -109,6 +109,9 @@ let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_linters = {'rust': 'all'}
