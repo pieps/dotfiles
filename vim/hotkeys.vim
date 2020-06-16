@@ -32,6 +32,14 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <Leader>f <Plug>(ale_fix)
 nmap <silent> <Leader>t <Plug>(ale_hover)
 
+if has("unix")
+  nnoremap <silent> <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+  nnoremap <silent> <Leader>sp :sp <C-R>=expand("%:p:h") . "/" <CR>
+else
+  nnoremap <silent> <Leader>e :e <C-R>=expand("%:p:h") . "\" <CR>
+  nnoremap <silent> <Leader>sp :sp <C-R>=expand("%:p:h") . "\" <CR>
+endif
+
 " I've been hitting the emacs a bit hard lately
 "noremap <C-g> <Esc>
 
