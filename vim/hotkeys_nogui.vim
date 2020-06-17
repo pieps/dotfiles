@@ -24,3 +24,5 @@ nnoremap <Esc-/> /\c
 nnoremap <silent> <Esc>q :QFix<CR>
 nnoremap <silent> <Esc>w :cp<CR>
 nnoremap <silent> <Esc>e :cn<CR>
+
+nnoremap <silent> <Esc>v :Vista!!<CR>

@@ -119,6 +119,7 @@ let g:ale_fixers = {'rust': ['rustfmt']}
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 
+let g:vista_default_executive = 'coc'
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
@@ -130,7 +131,6 @@ set statusline+=%{NearestMethodOrFunction()}
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc 
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-let g:vista_default_executive = 'coc'
 
 " Disable keycode delays
 set ttimeoutlen=0

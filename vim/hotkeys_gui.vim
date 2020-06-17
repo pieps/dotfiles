@@ -24,3 +24,5 @@ nnoremap <M-/> /\c
 nnoremap <silent> <M-q> :QFix<CR>
 nnoremap <silent> <M-w> :cp<CR>
 nnoremap <silent> <M-e> :cn<CR>
+
+nnoremap <silent> <M-v> :Vista!!<CR>
