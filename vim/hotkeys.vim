@@ -2,11 +2,9 @@ noremap <C-S-l> <C-w>h<C-w>\|
 noremap <C-S-k> <C-w>j<C-w>_
 noremap <C-S-j> <C-w>k<C-w>_
 noremap <C-S-h> <C-w>l<C-w>\|
-
-" Folding!
-"map <space> za
-"map <C-space> $zfa%
-"map <S-space> zd
+nnoremap <silent> <C-j> gt
+nnoremap <silent> <C-k> gT
+nnoremap <silent> <C-n> :tabnew<CR>
 
 " Remap ` to '
 nnoremap ' `
@@ -16,11 +14,6 @@ nnoremap ` '
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-"map <Leader>i :JavaImport
-
-" Go to definition via YCM.
-"nnoremap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 nnoremap <C-p> :FZF<CR>
 
 " Haskell fun with ALE
@@ -29,8 +22,7 @@ autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursor
 " ALE keys
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <Leader>f <Plug>(ale_fix)
-nmap <silent> <Leader>t <Plug>(ale_hover)
+nmap <silent> <Leader>F <Plug>(ale_fix)
 
 if has("unix")
   nnoremap <silent> <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
