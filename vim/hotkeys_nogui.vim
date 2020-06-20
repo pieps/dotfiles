@@ -19,7 +19,9 @@ nnoremap <silent> <Esc>p p=']
 nnoremap <silent> <Esc>n :noh<CR>
 nnoremap <silent> <Esc-=> =aB
 
-nnoremap <Esc-/> /\c
+
+nnoremap <silent> <Esc>/ :History/<CR>
+nnoremap <silent> <Esc>; :History:<CR>
 
 nnoremap <silent> <Esc>q :QFix<CR>
 nnoremap <silent> <Esc>w :cp<CR>
