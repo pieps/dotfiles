@@ -114,7 +114,7 @@ let g:webdevicons_enable_airline_statusline = 1
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_linters = {'rust': 'all'}
+let g:ale_linters = {}
 let g:ale_fixers = {'rust': ['rustfmt']}
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
