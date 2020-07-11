@@ -1,7 +1,4 @@
-function tn -d 'Create new tmux session'
-  if count $argv > 0
-    tmux new -s $argv
-  else
-    tmux new -s (basename (pwd))
-  end
+function tn -d 'Create new tmux session or attach to one with the given name'
+  td $argv
+  ta $argv
 end
