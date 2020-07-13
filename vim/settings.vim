@@ -136,3 +136,8 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 set ttimeoutlen=0
 
 call showmarks#ShowMarks('global,enable')
+
+" auto-pairs settings.
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutFastWrap = '<M-w>'
+let g:AutoPairsShortcutJump = '<M-e>'
