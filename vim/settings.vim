@@ -108,6 +108,15 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+"let g:airline_left_sep = "\ue0b8" 
+"let g:airline_left_alt_sep = "\ue0b9" 
+"let g:airline_right_sep = "\ue0be" 
+"let g:airline_right_alt_sep = "\ue0bf" 
 
 let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_airline_statusline = 1
