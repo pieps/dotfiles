@@ -24,8 +24,8 @@ set mouse=a
 set pumblend=30
 
 source ~/.config/nvim/plug.vim
-source ~/.vim/settings.vim
 source ~/.vim/functions.vim
+source ~/.vim/settings.vim
 source ~/.vim/hotkeys.vim
 source ~/.vim/coc_recommended_settings.vim
 
