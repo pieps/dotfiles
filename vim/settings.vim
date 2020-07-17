@@ -23,6 +23,11 @@ set laststatus=2
 " Font/colors
 set background=dark
 "colorscheme darkspectrum
+"colorscheme edge
+"colorscheme Tomorrow-Night{,-Eighties}
+"colorscheme Atelier_HeathDark
+"colors ayu
+let g:sonokai_style = 'andromeda'
 colorscheme sonokai
 set gfn=Monospace
 
@@ -31,7 +36,7 @@ let g:netrw_liststyle = 3
 let g:netrw_altv = 1
 
 " Make windows at least 20 chars wide when have focus
-set winwidth=20	
+set winwidth=20
 
 " make sure changes aren't abandoned when switching buffers
 set hidden
@@ -111,12 +116,19 @@ let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#whitespace#enabled = 1
-let g:airline_left_sep = "\uE0B4"
-let g:airline_right_sep = "\uE0B6"
-"let g:airline_left_sep = "\ue0b8" 
-"let g:airline_left_alt_sep = "\ue0b9" 
-"let g:airline_right_sep = "\ue0be" 
-"let g:airline_right_alt_sep = "\ue0bf" 
+if !exists('g:airline_theme_map')
+  let g:airline_theme_map = {}
+endif
+call extend(g:airline_theme_map, {'Atelier_HeathDark' : 'zenburn'})
+"let g:airline_theme = 'angr'
+"let g:airline_theme = 'owo'
+"let g:airline_theme = 'raven'
+"let g:airline_theme = 'sonokai'
+"let g:airline_theme = 'zenburn'
+"let g:airline_left_sep = "\ue0b8"
+"let g:airline_left_alt_sep = "\ue0b9"
+"let g:airline_right_sep = "\ue0be"
+"let g:airline_right_alt_sep = "\ue0bf"
 
 let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_airline_statusline = 1
@@ -138,7 +150,7 @@ set statusline+=%{NearestMethodOrFunction()}
 " By default vista.vim never run if you don't call it explicitly.
 "
 " If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc 
+" you can add the following line to your vimrc
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " Disable keycode delays
