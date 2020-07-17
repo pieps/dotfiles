@@ -5,6 +5,6 @@ function td -d 'Create new tmux session without attaching'
     set tmux_session (pwd)
   end
   if not tmux has-session -t (basename $tmux_session) 2> /dev/null
-    tmux new -ds (basename $tmux_session) -c $tmux_session
+    tmux new -ds (basename $tmux_session) -c (readlink --canonicalize $tmux_session)
   end
 end
