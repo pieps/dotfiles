@@ -24,17 +24,20 @@ nnoremap <C-p> :FZF<CR>
 " Haskell fun with ALE
 autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
+" Allow for easy toggling between impls and tests in Java.
+autocmd FileType java nnoremap <Leader>t :e <C-R>=ToggleTestJava()<CR><CR>
+
 " ALE keys
 "nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 "nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <Leader>F <Plug>(ale_fix)
 
 if has("unix")
-  nnoremap <silent> <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <silent> <Leader>sp :sp <C-R>=expand("%:p:h") . "/" <CR>
+  nnoremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+  nnoremap <Leader>sp :sp <C-R>=expand("%:p:h") . "/" <CR>
 else
-  nnoremap <silent> <Leader>e :e <C-R>=expand("%:p:h") . "\" <CR>
-  nnoremap <silent> <Leader>sp :sp <C-R>=expand("%:p:h") . "\" <CR>
+  nnoremap <Leader>e :e <C-R>=expand("%:p:h") . "\" <CR>
+  nnoremap <Leader>sp :sp <C-R>=expand("%:p:h") . "\" <CR>
 endif
 
 " I've been hitting the emacs a bit hard lately
