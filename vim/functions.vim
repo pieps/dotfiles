@@ -18,12 +18,23 @@ augroup QFixToggle
  autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
 augroup END
 
-function ToggleTestJava()
+function ToggleTestJava(split)
   let s:cur_file = expand("%:p")
   if s:cur_file =~ 'javatests/'
-    return substitute(substitute(expand("%:p"), "javatests/", "java/", ""), "Test\.java$", ".java", "")
+    let s:new_file = substitute(substitute(expand("%:p"), "javatests/", "java/", ""), "Test\.java$", ".java", "")
   elseif s:cur_file =~ 'java/'
-    return substitute(substitute(expand("%:p"), "java/", "javatests/", ""), "\.java$", "Test.java", "")
+    let s:new_file = substitute(substitute(expand("%:p"), "java/", "javatests/", ""), "\.java$", "Test.java", "")
+  endif
+
+  if a:split == 0 || winnr('$') > 1
+    let s:win_num = bufwinnr(bufnr(s:new_file))
+    if s:win_num != -1
+      exe s:win_num . 'wincmd w'
+    else
+      exe 'edit '.fnameescape(s:new_file)
+    endif
+  else
+    exe 'vs '.fnameescape(s:new_file)
   endif
 endfunction
 

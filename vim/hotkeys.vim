@@ -25,7 +25,8 @@ nnoremap <C-p> :FZF<CR>
 autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
 " Allow for easy toggling between impls and tests in Java.
-autocmd FileType java nnoremap <Leader>t :e <C-R>=ToggleTestJava()<CR><CR>
+autocmd FileType java nnoremap <Leader>t :call ToggleTestJava(0)<CR>
+autocmd FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>
 
 " ALE keys
 "nmap <silent> <C-k> <Plug>(ale_previous_wrap)
