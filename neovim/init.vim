@@ -23,15 +23,11 @@ set termguicolors
 set mouse=a
 set pumblend=30
 
-if !exists('g:vscode')
-  source ~/.config/nvim/plug.vim
-endif
+source ~/.config/nvim/plug.vim
 source ~/.vim/functions.vim
 source ~/.vim/settings.vim
 source ~/.vim/hotkeys.vim
-if !exists('g:vscode')
-  source ~/.vim/coc_recommended_settings.vim
-endif
+source ~/.vim/coc_recommended_settings.vim
 
 " Load Google-internal stuff
 if filereadable(expand("~/google.vimrc"))
