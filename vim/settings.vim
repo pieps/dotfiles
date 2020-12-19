@@ -88,9 +88,10 @@ if has("wildignorecase")
   set wildignorecase
 endif
 
-" Better autocompletion
-" Complete until unique prefix, then show menu
-set completeopt+=longest
+" Show menu even when there's one completion, don't insert it automatically,
+" and don't automattically select it. The noinsert option in particular makes
+" nvim-lua/completion-nvim and coc-snippets livable.
+set completeopt=menuone,noinsert,noselect
 
 " Maintain more text around cursor
 set scrolloff=3
@@ -103,10 +104,6 @@ autocmd VimLeave * mksession! ~/.vim/last-session.vim
 
 " Make indendtation for go correct
 au BufRead,BufNewFile *.go set noet ts=4 sw=4
-
-let g:ycm_extra_conf_globlist = ['~/src/cpp/*', '!~/*']
-let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_server_python_interpreter = '/usr/bin/python'
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
