@@ -159,3 +159,8 @@ call showmarks#ShowMarks('global,enable')
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutFastWrap = '<M-w>'
 let g:AutoPairsShortcutJump = '<M-e>'
+
+" Use ferris, not the Rust logo.
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rs'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rlib'] = ''
