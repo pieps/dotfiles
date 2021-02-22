@@ -14,6 +14,7 @@ nnoremap <silent> <M-b> :Buffers<CR>
 nnoremap <silent> <M-f> :Ex<CR>
 nnoremap <silent> <M-d> :b #<CR>:bd #<CR>
 nnoremap <silent> <M-r> <C-^>
+nnoremap <silent> <M-o> :call CurtineIncSw()<CR>
 
 nnoremap <silent> <M-p> p=']
 nnoremap <silent> <M-n> :noh<CR>

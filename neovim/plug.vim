@@ -12,6 +12,7 @@ function GeneralPurpose()
 endfunction
 
 function Lang()
+  Plug 'ericcurtin/CurtineIncSw.vim'
   Plug 'Blackrush/vim-gocode'
   Plug 'rust-lang/rust.vim'
   Plug 'leafgarland/typescript-vim'
