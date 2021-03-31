@@ -32,3 +32,4 @@ node_modules
 db.json
 coc/*
 neovim/coc-settings.json
+vim/.netrwbook
