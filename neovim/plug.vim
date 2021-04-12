@@ -16,7 +16,8 @@ function Lang()
   Plug 'Blackrush/vim-gocode'
   Plug 'rust-lang/rust.vim'
   Plug 'leafgarland/typescript-vim'
-  Plug 'sheerun/vim-polyglot'
+  " Disabling per https://www.reddit.com/r/neovim/comments/mmm4fd/word_of_advice_if_using_neovim_treesitter_then/
+  "Plug 'sheerun/vim-polyglot'
 endfunction
 
 function TextManagement()
