@@ -5,6 +5,7 @@
 .*.swp
 google.el
 neovim/plugged
+neovim/plugins
 vim/.netrwhist
 vim/bundle
 vim/data/log
