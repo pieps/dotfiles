@@ -13,10 +13,10 @@ do  -- Settings.
   vim.o.termguicolors = true
   vim.o.mouse = 'a'
   vim.o.pumblend = 30
-  vim.bo.expandtab = true
-  vim.bo.tabstop = 2
-  vim.bo.shiftwidth = 2
-  vim.bo.swapfile = false
+  vim.o.expandtab = true
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = 2
+  vim.o.swapfile = false
   vim.o.winaltkeys = 'no'
   vim.wo.colorcolumn = '+1'
   vim.o.laststatus = 2
@@ -39,7 +39,7 @@ end
 -- TODO(neovim/neovim#12378): Migrate this to native lua when autocmds work.
 vim.cmd('source ~/.vim/functions.vim')
 
-do  -- pre-plugin
+do  -- Pre-plugin
   -- sainnhe/sonokai
   vim.g.sonokai_style = 'andromeda'
 
@@ -62,11 +62,12 @@ do  -- pre-plugin
   }
 end
 
+-- Plugins.
 require('neo.plugins')
 
 vim.cmd[[colorscheme sonokai]]
 
-do
+do  -- Compe for autocompletion.
   require("compe").setup {
     enabled = true;
     autocomplete = true;
@@ -84,8 +85,16 @@ do
     source = {
       path = true;
       nvim_lsp = true;
+      utlisnips = true
     };
   }
+
+  vim.g.lexima_no_default_rules = true
+  vim.call("lexima#set_default_rules")
+  vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true})
+  vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm(lexima#expand('<LT>CR>', 'i'))", {expr = true})
+  vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", {expr = true})
+
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
@@ -117,7 +126,6 @@ do
       return t "<S-Tab>"
     end
   end
-
   vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
   vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
   vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
@@ -126,26 +134,12 @@ end
 
 
 do  -- lspconfig
-  vim.lsp.set_log_level "trace"
   local nvim_lsp = require("lspconfig")
-  local function map(lhs, rhs, mode, expr)    -- wait for lua keymaps: neovim/neovim#13823
-    mode = mode or 'n'
-    if mode == 'n' then rhs = '<cmd>' .. rhs .. '<cr>' end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, {noremap=true, silent=true, expr=expr})
-  end
 
   --- auto-commands
-  vim.cmd "au BufWritePre *.rs,*.c,*.ts lua vim.lsp.buf.formatting_sync()"
-  vim.cmd "au CursorHold * lua vim.diagnostic.open_float()"
-  --au "Filetype julia setlocal omnifunc=v:lua.lsp.omnifunc"
-
-
-  -- Complete with tab
-  --map("<Tab>",   "pumvisible() ? '<C-n>' : '<Tab>'", "i", true)
-  --map("<S-Tab>", "pumvisible() ? '<C-p>' : '<S-Tab>'", "i", true)
+  vim.cmd 'au BufWritePre *.rs,*.c,*.ts lua vim.lsp.buf.formatting_sync()'
 
   local on_attach = function(_client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     -- LSP bindings
      local opts = { noremap=true, silent=true }
      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -167,20 +161,17 @@ do  -- lspconfig
   end
 
   -- Enable the following language servers
-  local servers = { 'clangd', 'rust_analyzer', 'tsserver' }
-  for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup { on_attach = on_attach }
-  end
+  nvim_lsp.clangd.setup { on_attach = on_attach }
+  nvim_lsp.tsserver.setup { on_attach = on_attach }
 
-  -- Disable virtual text
-  --vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  --vim.lsp.diagnostic.on_publish_diagnostics,
-  --{
-    --virtual_text = false,
-    --underline = true,
-    --signs = true,
-  --}
-  --)
+  local opts = {
+    server = { cmd = {'rustup', 'run', 'nightly', 'rust-analyzer'}, on_attach = on_attach } -- rust-analyer options
+  }
+  require('rust-tools').setup(opts)
+end
+
+do  -- Vista.vim
+  vim.g.vista_default_executive = 'nvim_lsp'
 end
 
 do  -- Keybindings.

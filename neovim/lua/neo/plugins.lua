@@ -2,7 +2,7 @@ local pack_path =  '/site/pack/packer/start/packer.nvim'
 local install_path = vim.fn.stdpath('data') .. pack_path
 local packer_repo = 'https://github.com/wbthomason/packer.nvim'
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+if vim.fn.isdirectory(install_path) == 0 then
   vim.cmd(table.concat({'!git', 'clone', packer_repo, install_path}, ' '))
 end
 
@@ -23,8 +23,13 @@ require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
   use 'rust-lang/rust.vim'
+  use 'simrat39/rust-tools.nvim'
   use 'ericcurtin/CurtineIncSw.vim'
   use 'leafgarland/typescript-vim'
+  use 'onsails/lspkind-nvim'
+  use 'honza/vim-snippets'
+  use 'h-michael/lsp-ext.nvim'
+  use 'cohama/lexima.vim'
 
   -- Buffer management.
   use 'tpope/vim-vinegar'
@@ -36,7 +41,6 @@ require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'lukas-reineke/indent-blankline.nvim'
-
 
   -- Eye candy
   use 'vim-airline/vim-airline'
