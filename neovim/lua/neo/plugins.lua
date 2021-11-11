@@ -14,6 +14,7 @@ vim.api.nvim_exec([[
 ]], false)
 
 require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
@@ -28,8 +29,12 @@ require('packer').startup(function(use)
   -- Buffer management.
   use 'tpope/vim-vinegar'
   use 'troydm/zoomwintab.vim'
-  use {'junegunn/fzf', run='./install --all'}
-  use 'junegunn/fzf.vim'
+  --use {'junegunn/fzf', run='./install --all'}
+  --use 'junegunn/fzf.vim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
   use 'lukas-reineke/indent-blankline.nvim'
 
 

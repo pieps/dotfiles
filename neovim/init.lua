@@ -195,7 +195,11 @@ do  -- Keybindings.
   map('`', "'", '')
   map('<C-e>', '3<C-e>', '')
   map('<C-y>', '3<C-y>', '')
-  map('<C-p>', 'FZF')
+
+  --map('<C-p>', 'FZF')
+  map('<C-p>', 'lua require("telescope.builtin").find_files()')
+  --map('<M-b>', 'Buffers')
+  map('<M-b>', 'lua require("telescope.builtin").buffers()')
 
   vim.cmd "au FileType java nnoremap <Leader>t :call ToggleTestJava(0)<CR>"
   vim.cmd "au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>"
@@ -216,7 +220,6 @@ do  -- Keybindings.
   map('<M-S-k>', '<C-w>K', '')
   map('<M-S-l>', '<C-w>L', '')
 
-  map('<M-b>', 'Buffers')
   map('<M-f>', 'Ex')
   map('<M-d>', 'b #<CR>:bd #')
   map('<M-r>', '<C-^>', '')
