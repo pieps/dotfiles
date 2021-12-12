@@ -136,7 +136,7 @@ do  -- lspconfig
 
   --- auto-commands
   vim.cmd "au BufWritePre *.rs,*.c,*.ts lua vim.lsp.buf.formatting_sync()"
-  vim.cmd "au CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()"
+  vim.cmd "au CursorHold * lua vim.diagnostic.open_float()"
   --au "Filetype julia setlocal omnifunc=v:lua.lsp.omnifunc"
 
 
@@ -160,7 +160,7 @@ do  -- lspconfig
      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
      vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
      vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
      vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -205,9 +205,9 @@ do  -- Keybindings.
   vim.cmd "au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>"
 
   if vim.fn.has('unix') then
-    map('<Leader>e', 'e <C-R>=expand("%:p:h") . "/"')
+    vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
   else
-    map('<Leader>e', 'e <C-R>=expand("%:p:h") . "\\"')
+    vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
   end
 
   map('<M-h>', '<C-w>h', '')
