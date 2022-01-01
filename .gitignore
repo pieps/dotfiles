@@ -5,6 +5,7 @@
 .*.swp
 google.el
 neovim/plugged
+neovim/plugin
 neovim/plugins
 vim/.netrwhist
 vim/bundle
