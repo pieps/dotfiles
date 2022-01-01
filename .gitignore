@@ -26,6 +26,7 @@ fish/fishd*
 fish/completions
 fish/conf.d
 fish/fish_variables
+fish/functions/_*
 fish/functions/__ssh_agent*
 fish/functions/fisher.fish
 fish/functions/fzf_key_bindings.fish
