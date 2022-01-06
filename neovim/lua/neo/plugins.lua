@@ -36,6 +36,7 @@ require('packer').startup(function(use)
   use 'troydm/zoomwintab.vim'
   --use {'junegunn/fzf', run='./install --all'}
   --use 'junegunn/fzf.vim'
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
