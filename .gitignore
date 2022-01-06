@@ -28,7 +28,8 @@ fish/completions
 fish/conf.d
 fish/fish_variables
 fish/functions/_*
-fish/functions/__ssh_agent*
+fish/functions/citc_tmux_create_detached.fish
+fish/functions/cn.fish
 fish/functions/fisher.fish
 fish/functions/fzf_key_bindings.fish
 fish/functions/nvm.fish
