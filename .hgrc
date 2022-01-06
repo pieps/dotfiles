@@ -41,6 +41,7 @@ mylint = ! DIR=$(p4 g4d $(hg exportedcl $1)) && cd $DIR && p4 lint
 [google]
 mail.default-rev=only(., p4head)
 presubmit.default-rev=only(., p4head)
+upload.default-rev=.
 
 # GPG extension settings
 #[gpg]
