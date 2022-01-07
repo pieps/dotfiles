@@ -45,3 +45,4 @@ neovim/coc-settings.json
 vim/.netrwbook
 neovim/plugin
 neovim/lua/neo/search_dirs.lua
+neovim/lua/neo/custom_lsp.lua

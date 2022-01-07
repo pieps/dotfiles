@@ -1,6 +1,6 @@
 do  -- Settings.
-  -- Required by hrsh7th/nvim-compe.
-  vim.o.completeopt = 'menuone,noinsert'
+  -- Required by hrsh7th/nvim-cmp.
+  vim.o.completeopt = 'menu,menuone,noselect'
 
   -- Incremental live completion.
   vim.o.inccommand = 'nosplit'
@@ -67,81 +67,127 @@ require('neo.plugins')
 
 vim.cmd[[colorscheme sonokai]]
 
-do  -- Compe for autocompletion.
-  require("compe").setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 1;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
+do  -- luasnip.
 
-    source = {
-      path = true;
-      nvim_lsp = true;
-      utlisnips = true
-    };
-  }
-
-  vim.g.lexima_no_default_rules = true
-  vim.call("lexima#set_default_rules")
-  vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true})
-  vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm(lexima#expand('<LT>CR>', 'i'))", {expr = true})
-  vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", {expr = true})
-
-  local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-  end
-
-  local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-      return true
-    else
-      return false
-    end
-  end
-  -- Use (s-)tab to:
-  --- move to prev/next item in completion menuone
-  --- jump to prev/next snippet's placeholder
-  _G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-      return t "<C-n>"
-    elseif check_back_space() then
-      return t "<Tab>"
-    else
-      return vim.fn['compe#complete']()
-    end
-  end
-  _G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-      return t "<C-p>"
-    else
-      return t "<S-Tab>"
-    end
-  end
-  vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-  vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-  vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-  vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
 
+do  -- nvim-cmp for autocompletion.
+  -- Setup nvim-cmp.
+  local cmp = require('cmp')
+  local types = require('cmp.types')
+  local str = require('cmp.utils.str')
+  local lspkind = require('lspkind')
+  local luasnip = require('luasnip')
+
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+  end
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' }, -- For luasnip users.
+    }, {
+      { name = 'buffer' },
+    }),
+    formatting = {
+      format = lspkind.cmp_format({
+        with_text = false, -- do not show text alongside icons
+        -- The function below will be called before any actual modifications from lspkind
+        -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+        before = function (entry, vim_item)
+          local word = entry:get_insert_text()
+          if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+            word = vim.lsp.util.parse_snippet(word)
+          end
+          word = str.oneline(word)
+          if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+            word = word .. '~'
+          end
+          vim_item.abbr = word
+          return vim_item
+        end
+      })
+    }
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+end
 
 do  -- lspconfig
-  local nvim_lsp = require("lspconfig")
+  local nvim_lsp = require('lspconfig')
+  pcall(require, 'neo.custom_lsp')
 
   --- auto-commands
   vim.cmd 'au BufWritePre *.rs,*.c,*.ts lua vim.lsp.buf.formatting_sync()'
 
   local on_attach = function(_client, bufnr)
+     -- Omni-completion via LSP. See `:help compl-omni`. Use <C-x><C-o> in
+    -- insert mode. Or use an external autocompleter (see below) for a
+    -- smoother UX.
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.
+      vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
+    end
+    if vim.lsp.tagfunc then -- Neovim v0.6.0+ only.
+      -- Tag functionality via LSP. See `:help tag-commands`. Use <c-]> to
+      -- go-to-definition.
+      vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
+    end
+
     -- LSP bindings
-    local opts = { noremap=true, silent=true }
+    local opts = { noremap=true}
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -155,19 +201,68 @@ do  -- lspconfig
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>j', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+    vim.api.nvim_command('augroup LSP')
+    vim.api.nvim_command('autocmd!')
+    if _client.resolved_capabilities.document_highlight then
+      vim.api.nvim_command('autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()')
+      vim.api.nvim_command('autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()')
+      vim.api.nvim_command('autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()')
+    end
+    vim.api.nvim_command('augroup END')
   end
 
+  -- Update LSP capabilities with nvim-cmp's/cmp-nvim-lsp's.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
   -- Enable the following language servers
-  nvim_lsp.clangd.setup { on_attach = on_attach }
-  nvim_lsp.tsserver.setup { on_attach = on_attach }
+  nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
+
+  nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
+
+  nvim_lsp.ciderlsp.setup { on_attach = on_attach, capabilities = capabilities }
 
   local opts = {
-    server = { cmd = {'rustup', 'run', 'nightly', 'rust-analyzer'}, on_attach = on_attach } -- rust-analyer options
+    server = { cmd = {'rustup', 'run', 'nightly', 'rust-analyzer'}, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
   }
   require('rust-tools').setup(opts)
+
+  local runtime_path = vim.split(package.path, ';')
+  table.insert(runtime_path, 'lua/?.lua')
+  table.insert(runtime_path, 'lua/?/init.lua')
+
+  nvim_lsp.sumneko_lua.setup {
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = runtime_path,
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file('', true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  }
 end
 
 do  -- Vista.vim
@@ -212,8 +307,8 @@ do  -- Keybindings.
   map('<C-p>', 'lua require("telescope.builtin").find_files({search_dirs=find_search_dirs()})')
   map('<M-b>', 'lua require("telescope.builtin").buffers()')
 
-  vim.cmd "au FileType java nnoremap <Leader>t :call ToggleTestJava(0)<CR>"
-  vim.cmd "au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>"
+  vim.cmd 'au FileType java nnoremap <Leader>t :call ToggleTestJava(0)<CR>'
+  vim.cmd 'au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>'
 
   if vim.fn.has('unix') then
     vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})

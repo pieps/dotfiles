@@ -21,21 +21,25 @@ require('packer').startup(function(use)
 
   -- LSP & languages.
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'L3MON4D3/LuaSnip'
+  use 'h-michael/lsp-ext.nvim'
+  use 'onsails/lspkind-nvim'
+
+  -- Languages.
   use 'rust-lang/rust.vim'
   use 'simrat39/rust-tools.nvim'
-  use 'ericcurtin/CurtineIncSw.vim'
   use 'leafgarland/typescript-vim'
-  use 'onsails/lspkind-nvim'
-  use 'honza/vim-snippets'
-  use 'h-michael/lsp-ext.nvim'
-  use 'cohama/lexima.vim'
+  use 'ericcurtin/CurtineIncSw.vim'
 
   -- Buffer management.
   use 'tpope/vim-vinegar'
   use 'troydm/zoomwintab.vim'
-  --use {'junegunn/fzf', run='./install --all'}
-  --use 'junegunn/fzf.vim'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
