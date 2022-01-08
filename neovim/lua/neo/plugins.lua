@@ -66,6 +66,8 @@ require('packer').startup(function(use)
       vim.notify = require('notify')
     end,
   }
+  use 'liuchengxu/vista.vim'
+  use 'chentau/marks.nvim'
 
   -- Eye candy
   use 'vim-airline/vim-airline'
@@ -81,7 +83,6 @@ require('packer').startup(function(use)
   use 'ludovicchabant/vim-lawrencium'
   use 'flazz/vim-colorschemes'
   use 'ryanoasis/vim-devicons'
-  use 'liuchengxu/vista.vim'
 end)
 
 
