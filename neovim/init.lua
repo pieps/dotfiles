@@ -33,7 +33,6 @@ do  -- Settings.
   vim.g.ttimeoutlen = 0
 
   -- TODO(pieps): Showmarks?
-  -- TODO(pieps): AutoPairs? Or does treesitter-textobjects handle that?
 end
 
 -- TODO(neovim/neovim#12378): Migrate this to native lua when autocmds work.
@@ -66,10 +65,6 @@ end
 require('neo.plugins')
 
 vim.cmd[[colorscheme sonokai]]
-
-do  -- luasnip.
-
-end
 
 do  -- nvim-cmp for autocompletion.
   -- Setup nvim-cmp.
@@ -271,6 +266,22 @@ end
 
 do  -- Telescope.nvim
   require('telescope').load_extension('fzf')
+end
+
+do  -- treesitter.
+  require('nvim-treesitter.configs').setup {
+    textobjects = {
+      swap = {
+        enable = true,
+        swap_next = {
+          ["<leader>a"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["<leader>A"] = "@parameter.inner",
+        },
+      },
+    },
+  }
 end
 
 do  -- Keybindings.
