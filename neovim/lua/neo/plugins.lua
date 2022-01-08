@@ -16,6 +16,7 @@ vim.api.nvim_exec([[
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
+  use 'nvim-treesitter/nvim-treesitter-refactor'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
 
@@ -30,6 +31,19 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'h-michael/lsp-ext.nvim'
   use 'onsails/lspkind-nvim'
+  use {
+    'windwp/nvim-autopairs',
+    event = 'BufRead',
+    config = function()
+      require('nvim-autopairs').setup({check_ts = true})
+
+      -- If you want insert `(` after select function or method item
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
+      cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+    end,
+    after = {'nvim-cmp', 'nvim-treesitter'},
+  }
 
   -- Languages.
   use 'rust-lang/rust.vim'
@@ -46,6 +60,12 @@ require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'lukas-reineke/indent-blankline.nvim'
+  use {
+    'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require('notify')
+    end,
+  }
 
   -- Eye candy
   use 'vim-airline/vim-airline'
