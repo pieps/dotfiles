@@ -223,7 +223,7 @@ do  -- lspconfig
 
   nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 
-  nvim_lsp.ciderlsp.setup { on_attach = on_attach, capabilities = capabilities }
+  --nvim_lsp.ciderlsp.setup { on_attach = on_attach, capabilities = capabilities }
 
   local opts = {
     server = { cmd = {'rustup', 'run', 'nightly', 'rust-analyzer'}, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
