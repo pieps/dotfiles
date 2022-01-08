@@ -31,8 +31,6 @@ do  -- Settings.
 
   -- Disable keycode delays.
   vim.g.ttimeoutlen = 0
-
-  -- TODO(pieps): Showmarks?
 end
 
 -- TODO(neovim/neovim#12378): Migrate this to native lua when autocmds work.
@@ -47,9 +45,12 @@ do  -- Pre-plugin
   vim.g['airline#extensions#ale#enabled'] = 1
   vim.g['airline#extensions#bufferline#enabled'] = 1
   vim.g['airline#extensions#fugitiveline#enabled'] = 1
+  vim.g['airline#extensions#nvimlsp#enabled'] = 1
   vim.g['airline#extensions#tabline#enabled'] = 1
   vim.g['airline#extensions#tabline#formatter'] = 'unique_tail_improved'
+  vim.g['airline#extensions#vista#enabled'] = 1
   vim.g['airline#extensions#whitespace#enabled'] = 1
+  vim.g['airline#extensions#zoomwintab#enabled'] = 1
   vim.g.webdevicons_enable_airline_tabline = 1
   vim.g.webdevicons_enable_airline_statusline = 1
 
@@ -165,7 +166,7 @@ do  -- lspconfig
   pcall(require, 'neo.custom_lsp')
 
   --- auto-commands
-  vim.cmd 'au BufWritePre *.rs,*.c,*.ts lua vim.lsp.buf.formatting_sync()'
+  vim.cmd 'au BufWritePre *.cc,*.h,*.lua,*.rs,*.c,*.ts,*.borg,*BUILD,*.java lua vim.lsp.buf.formatting_sync()'
 
   local on_attach = function(_client, bufnr)
      -- Omni-completion via LSP. See `:help compl-omni`. Use <C-x><C-o> in
@@ -270,18 +271,29 @@ end
 
 do  -- treesitter.
   require('nvim-treesitter.configs').setup {
+    ensure_installed = 'all',
+    highlight = {
+      enable = true,
+    },
+    indent = {
+      enable = true,
+    },
     textobjects = {
       swap = {
         enable = true,
         swap_next = {
-          ["<leader>a"] = "@parameter.inner",
+          ['<leader>a'] = '@parameter.inner',
         },
         swap_previous = {
-          ["<leader>A"] = "@parameter.inner",
+          ['<leader>A'] = '@parameter.inner',
         },
       },
     },
   }
+end
+
+do  -- marks.nvim.
+  require('marks').setup{}
 end
 
 do  -- Keybindings.
