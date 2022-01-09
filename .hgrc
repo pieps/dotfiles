@@ -40,7 +40,6 @@ cacerts = /etc/ssl/certs/ca-certificates.crt
 [alias]
 
 [color]
-mode=terminfo
 log.activebookmark = magenta bold
 log.activechangeset = yellow bold
 log.bookmark = magenta
