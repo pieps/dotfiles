@@ -23,6 +23,11 @@ hgext.convert=
 pager =
 shelve=
 evolve=
+rebase=
+color=
+
+[commands]
+rebase.requiredest=True
 
 [pager]
 pager = less
@@ -33,10 +38,18 @@ attend = diff,help,log,qdiff,blame,annotate,pdiff,glog
 cacerts = /etc/ssl/certs/ca-certificates.crt
 
 [alias]
-borrow = !p4 pack -c $1 | sed "/^\t/s/\t//p ; /^====.*====\$/,\$p ; d" | $HG import -e - -p0
-# Using the 'my' prefix since `hg lint` will eventually be directly supported,
-# so let's not hide it with this alias.
-mylint = ! DIR=$(p4 g4d $(hg exportedcl $1)) && cd $DIR && p4 lint
+
+[color]
+mode=terminfo
+log.activebookmark = magenta bold
+log.activechangeset = yellow bold
+log.bookmark = magenta
+log.branch = cyan
+log.changeset = yellow
+log.phase_draft = red bold
+log.phase_secret = blue bold
+log.tag = green
+log.user = blue
 
 [google]
 mail.default-rev=only(., p4head)
