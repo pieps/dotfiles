@@ -68,6 +68,7 @@ require('packer').startup(function(use)
   }
   use 'liuchengxu/vista.vim'
   use 'chentau/marks.nvim'
+  use {'sso://googler@user/vintharas/telescope-codesearch.nvim', after = { 'telescope.nvim'}}
 
   -- Eye candy
   use 'vim-airline/vim-airline'
@@ -83,6 +84,7 @@ require('packer').startup(function(use)
   use 'ludovicchabant/vim-lawrencium'
   use 'flazz/vim-colorschemes'
   use 'ryanoasis/vim-devicons'
+  use 'j-hui/fidget.nvim'
 end)
 
 

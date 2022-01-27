@@ -169,10 +169,6 @@ do  -- lspconfig
   vim.cmd 'au BufWritePre *.cc,*.h,*.lua,*.rs,*.c,*.ts,*.borg,*BUILD,*.java lua vim.lsp.buf.formatting_sync()'
 
   local on_attach = function(_client, bufnr)
-     -- Omni-completion via LSP. See `:help compl-omni`. Use <C-x><C-o> in
-    -- insert mode. Or use an external autocompleter (see below) for a
-    -- smoother UX.
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.
       vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
     end
@@ -220,8 +216,6 @@ do  -- lspconfig
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Enable the following language servers
-  nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
-
   nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 
   nvim_lsp.ciderlsp.setup { on_attach = on_attach, capabilities = capabilities }
@@ -296,6 +290,10 @@ do  -- marks.nvim.
   require('marks').setup{}
 end
 
+do  -- fidget.nvim.
+  require('fidget').setup{}
+end
+
 do  -- Keybindings.
   search_dirs = nil
   function find_search_dirs()
@@ -334,9 +332,9 @@ do  -- Keybindings.
   vim.cmd 'au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>'
 
   if vim.fn.has('unix') then
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
   else
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
   end
 
   map('<M-h>', '<C-w>h', '')
@@ -366,4 +364,35 @@ do  -- Keybindings.
   map('<M-e>', 'cn')
 
   map('<M-v>', 'Vista!!')
+
+  -- These custom mappings let you open telescope-codesearch quickly:
+  -- Fuzzy find files in codesearch.
+  vim.api.nvim_set_keymap('n', '<leader>ss',
+    [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
+    { noremap = true, silent=true }
+  )
+
+  -- Search using codesearch queries.
+    vim.api.nvim_set_keymap('n', '<leader>sd',
+    [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
+    { noremap = true, silent=true }
+  )
+
+  -- Search for the word under cursor.
+    vim.api.nvim_set_keymap('n', '<leader>sD',
+    [[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
+    { noremap = true, silent=true }
+  )
+
+  -- Search for a file having word under cursor in its name.
+    vim.api.nvim_set_keymap('n', '<leader>sS',
+    [[<cmd>lua require('telescope').extensions.codesearch.find_files{default_text_expand='<cword>'}<CR>]],
+    { noremap = true, silent=true }
+  )
+
+  -- Search for text selected in Visual mode.
+    vim.api.nvim_set_keymap('v', '<leader>sd',
+    [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
+    { noremap = true, silent=true }
+  )
 end
