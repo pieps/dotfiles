@@ -334,9 +334,9 @@ do  -- Keybindings.
   vim.cmd 'au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>'
 
   if vim.fn.has('unix') then
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
   else
-    vim.api.nvim_set_keymap('n', '<Leader>e', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
   end
 
   map('<M-h>', '<C-w>h', '')
