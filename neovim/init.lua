@@ -60,6 +60,9 @@ do  -- Pre-plugin
     rs = '',
     rlib = ''
   }
+
+  -- Neo-tree: remove the deprecated commands from v1.x.
+  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 end
 
 -- Plugins.
@@ -347,7 +350,7 @@ do  -- Keybindings.
   map('<M-S-k>', '<C-w>K', '')
   map('<M-S-l>', '<C-w>L', '')
 
-  map('<M-f>', 'Ex')
+  map('<M-f>', 'Neotree toggle reveal')
   map('<M-d>', 'b #<CR>:bd #')
   map('<M-r>', '<C-^>', '')
   map('<M-o>', 'call CurtineIncSw()')
