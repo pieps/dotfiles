@@ -1,4 +1,4 @@
-do  -- Settings.
+do -- Settings.
   -- Required by hrsh7th/nvim-cmp.
   vim.o.completeopt = 'menu,menuone,noselect'
 
@@ -36,7 +36,7 @@ end
 -- TODO(neovim/neovim#12378): Migrate this to native lua when autocmds work.
 vim.cmd('source ~/.vim/functions.vim')
 
-do  -- Pre-plugin
+do -- Pre-plugin
   -- sainnhe/sonokai
   vim.g.sonokai_style = 'andromeda'
 
@@ -68,9 +68,9 @@ end
 -- Plugins.
 require('neo.plugins')
 
-vim.cmd[[colorscheme sonokai]]
+vim.cmd [[colorscheme sonokai]]
 
-do  -- nvim-cmp for autocompletion.
+do -- nvim-cmp for autocompletion.
   -- Setup nvim-cmp.
   local cmp = require('cmp')
   local types = require('cmp.types')
@@ -119,7 +119,7 @@ do  -- nvim-cmp for autocompletion.
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'nvim_lsp_signature_help'},
+      { name = 'nvim_lsp_signature_help' },
       { name = 'luasnip' }, -- For luasnip users.
     }, {
       { name = 'buffer' },
@@ -129,7 +129,7 @@ do  -- nvim-cmp for autocompletion.
         with_text = false, -- do not show text alongside icons
         -- The function below will be called before any actual modifications from lspkind
         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-        before = function (entry, vim_item)
+        before = function(entry, vim_item)
           local word = entry:get_insert_text()
           if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
             word = vim.lsp.util.parse_snippet(word)
@@ -162,7 +162,7 @@ do  -- nvim-cmp for autocompletion.
   })
 end
 
-do  -- lspconfig
+do -- lspconfig
   local nvim_lsp = require('lspconfig')
   pcall(require, 'neo.custom_lsp')
 
@@ -180,7 +180,7 @@ do  -- lspconfig
     end
 
     -- LSP bindings
-    local opts = { noremap=true}
+    local opts = { noremap = true }
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -222,7 +222,7 @@ do  -- lspconfig
   nvim_lsp.ciderlsp.setup { on_attach = on_attach, capabilities = capabilities }
 
   local opts = {
-    server = { cmd = {'rustup', 'run', 'nightly', 'rust-analyzer'}, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
+    server = { cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' }, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
   }
   require('rust-tools').setup(opts)
 
@@ -241,7 +241,7 @@ do  -- lspconfig
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -255,25 +255,25 @@ do  -- lspconfig
     },
   }
 
-	local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-	for type, icon in pairs(signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-	end
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
   vim.diagnostic.config({
-    update_in_insert=true,
+    update_in_insert = true,
   })
 end
 
-do  -- Vista.vim
+do -- Vista.vim
   vim.g.vista_default_executive = 'nvim_lsp'
 end
 
-do  -- Telescope.nvim
+do -- Telescope.nvim
   require('telescope').load_extension('fzf')
 end
 
-do  -- treesitter.
+do -- treesitter.
   require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     highlight = {
@@ -296,15 +296,15 @@ do  -- treesitter.
   }
 end
 
-do  -- marks.nvim.
-  require('marks').setup{}
+do -- marks.nvim.
+  require('marks').setup {}
 end
 
-do  -- fidget.nvim.
-  require('fidget').setup{}
+do -- fidget.nvim.
+  require('fidget').setup {}
 end
 
-do  -- Keybindings.
+do -- Keybindings.
   search_dirs = nil
   function find_search_dirs()
     if search_dirs then
@@ -313,7 +313,7 @@ do  -- Keybindings.
     local loaded, dirs = pcall(require, 'neo.search_dirs')
     if loaded then
       for key, value in pairs(dirs) do
-        if vim.fn.getcwd():sub(-#key) == key then
+        if vim.fn.getcwd():sub(- #key) == key then
           search_dirs = value
           return value
         end
@@ -323,10 +323,10 @@ do  -- Keybindings.
     return {}
   end
 
-  local function map(lhs, rhs, mode, expr)    -- wait for lua keymaps: neovim/neovim#13823
+  local function map(lhs, rhs, mode, expr) -- wait for lua keymaps: neovim/neovim#13823
     mode = mode or 'n'
     if mode == 'n' then rhs = '<cmd>' .. rhs .. '<cr>' end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, {noremap=true, silent=true, expr=expr})
+    vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true, expr = expr })
   end
 
   map('<C-n>', 'tabnew')
@@ -342,9 +342,9 @@ do  -- Keybindings.
   vim.cmd 'au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>'
 
   if vim.fn.has('unix') then
-    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "/"<CR>', { noremap = true })
   else
-    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "\\"<CR>', { noremap = true })
   end
 
   map('<M-h>', '<C-w>h', '')
@@ -379,30 +379,30 @@ do  -- Keybindings.
   -- Fuzzy find files in codesearch.
   vim.api.nvim_set_keymap('n', '<leader>ss',
     [[<cmd>lua require('telescope').extensions.codesearch.find_files{}<CR>]],
-    { noremap = true, silent=true }
+    { noremap = true, silent = true }
   )
 
   -- Search using codesearch queries.
-    vim.api.nvim_set_keymap('n', '<leader>sd',
+  vim.api.nvim_set_keymap('n', '<leader>sd',
     [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-    { noremap = true, silent=true }
+    { noremap = true, silent = true }
   )
 
   -- Search for the word under cursor.
-    vim.api.nvim_set_keymap('n', '<leader>sD',
+  vim.api.nvim_set_keymap('n', '<leader>sD',
     [[<cmd>lua require('telescope').extensions.codesearch.find_query{default_text_expand='<cword>'}<CR>]],
-    { noremap = true, silent=true }
+    { noremap = true, silent = true }
   )
 
   -- Search for a file having word under cursor in its name.
-    vim.api.nvim_set_keymap('n', '<leader>sS',
+  vim.api.nvim_set_keymap('n', '<leader>sS',
     [[<cmd>lua require('telescope').extensions.codesearch.find_files{default_text_expand='<cword>'}<CR>]],
-    { noremap = true, silent=true }
+    { noremap = true, silent = true }
   )
 
   -- Search for text selected in Visual mode.
-    vim.api.nvim_set_keymap('v', '<leader>sd',
+  vim.api.nvim_set_keymap('v', '<leader>sd',
     [[<cmd>lua require('telescope').extensions.codesearch.find_query{}<CR>]],
-    { noremap = true, silent=true }
+    { noremap = true, silent = true }
   )
 end
