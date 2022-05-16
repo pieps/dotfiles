@@ -1,9 +1,9 @@
-local pack_path =  '/site/pack/packer/start/packer.nvim'
+local pack_path = '/site/pack/packer/start/packer.nvim'
 local install_path = vim.fn.stdpath('data') .. pack_path
 local packer_repo = 'https://github.com/wbthomason/packer.nvim'
 
 if vim.fn.isdirectory(install_path) == 0 then
-  vim.cmd(table.concat({'!git', 'clone', packer_repo, install_path}, ' '))
+  vim.cmd(table.concat({ '!git', 'clone', packer_repo, install_path }, ' '))
 end
 
 vim.api.nvim_exec([[
@@ -15,7 +15,7 @@ vim.api.nvim_exec([[
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-refactor'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
@@ -35,15 +35,16 @@ require('packer').startup(function(use)
     'windwp/nvim-autopairs',
     event = 'BufRead',
     config = function()
-      require('nvim-autopairs').setup({check_ts = true})
+      require('nvim-autopairs').setup({ check_ts = true })
 
       -- If you want insert `(` after select function or method item
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
-      cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
     end,
-    after = {'nvim-cmp', 'nvim-treesitter'},
+    after = { 'nvim-cmp', 'nvim-treesitter' },
   }
+  use 'tpope/vim-abolish'
 
   -- Languages.
   use 'rust-lang/rust.vim'
@@ -54,10 +55,10 @@ require('packer').startup(function(use)
   -- Buffer management.
   use 'tpope/vim-vinegar'
   use 'troydm/zoomwintab.vim'
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use 'lukas-reineke/indent-blankline.nvim'
   use {
@@ -68,9 +69,9 @@ require('packer').startup(function(use)
   }
   use 'liuchengxu/vista.vim'
   use 'chentau/marks.nvim'
-  use {'sso://googler@user/vintharas/telescope-codesearch.nvim', after = { 'telescope.nvim'}}
+  use { 'sso://googler@user/vintharas/telescope-codesearch.nvim', after = { 'telescope.nvim' } }
   use {
-  "nvim-neo-tree/neo-tree.nvim",
+    "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
     requires = {
       "nvim-lua/plenary.nvim",
@@ -83,7 +84,7 @@ require('packer').startup(function(use)
   use 'vim-airline/vim-airline'
   use {
     'vim-airline/vim-airline-themes',
-    requires = {'vim-airline/vim-airline'}}
+    requires = { 'vim-airline/vim-airline' } }
   use 'powerline/fonts'
   use 'sainnhe/sonokai'
   use 'sainnhe/edge'
@@ -95,5 +96,3 @@ require('packer').startup(function(use)
   use 'ryanoasis/vim-devicons'
   use 'j-hui/fidget.nvim'
 end)
-
-
