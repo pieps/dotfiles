@@ -68,7 +68,7 @@ require('packer').startup(function(use)
     end,
   }
   use 'liuchengxu/vista.vim'
-  use 'chentau/marks.nvim'
+  use 'chentoast/marks.nvim'
   use { 'sso://googler@user/vintharas/telescope-codesearch.nvim', after = { 'telescope.nvim' } }
   use {
     "nvim-neo-tree/neo-tree.nvim",
