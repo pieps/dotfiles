@@ -67,7 +67,7 @@ require('packer').startup(function(use)
     end,
   }
   use 'liuchengxu/vista.vim'
-  use 'chentau/marks.nvim'
+  use 'chentoast/marks.nvim'
 
   -- Eye candy
   use 'vim-airline/vim-airline'
