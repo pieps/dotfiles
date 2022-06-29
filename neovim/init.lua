@@ -266,45 +266,6 @@ do -- lspconfig
   })
 end
 
-do -- Vista.vim
-  vim.g.vista_default_executive = 'nvim_lsp'
-end
-
-do -- Telescope.nvim
-  require('telescope').load_extension('fzf')
-end
-
-do -- treesitter.
-  require('nvim-treesitter.configs').setup {
-    ensure_installed = 'all',
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-    textobjects = {
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
-  }
-end
-
-do -- marks.nvim.
-  require('marks').setup {}
-end
-
-do -- fidget.nvim.
-  require('fidget').setup {}
-end
-
 do -- Keybindings.
   search_dirs = nil
   function find_search_dirs()
