@@ -15,22 +15,58 @@ vim.api.nvim_exec([[
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'nvim-treesitter/nvim-treesitter-refactor'
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'nvim-treesitter/playground'
 
-  -- LSP & languages.
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      'nvim-treesitter/nvim-treesitter-refactor',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground',
+    },
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = 'all',
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+        textobjects = {
+          swap = {
+            enable = true,
+            swap_next = {
+              ['<leader>a'] = '@parameter.inner',
+            },
+            swap_previous = {
+              ['<leader>A'] = '@parameter.inner',
+            },
+          },
+        },
+      }
+    end,
+  }
+
+  -- LSP & text editing.
   use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+    },
+  }
   use 'h-michael/lsp-ext.nvim'
   use 'onsails/lspkind-nvim'
+  use {
+    'terrortylor/nvim-comment',
+    config = function()
+      require('nvim_comment').setup({})
+    end,
+  }
   use {
     'windwp/nvim-autopairs',
     event = 'BufRead',
@@ -48,7 +84,13 @@ require('packer').startup(function(use)
 
   -- Languages.
   use 'rust-lang/rust.vim'
-  use 'simrat39/rust-tools.nvim'
+  use { 'simrat39/rust-tools.nvim',
+    requires = { 'mfussenegger/nvim-dap', 'nvim-lua/plenary.nvim' },
+  }
+  use {
+    'L3MON4D3/LuaSnip',
+    requires = { 'saadparwaiz1/cmp_luasnip' },
+  }
   use 'leafgarland/typescript-vim'
   use 'ericcurtin/CurtineIncSw.vim'
 
@@ -58,7 +100,10 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').load_extension('fzf')
+    end,
   }
   use 'lukas-reineke/indent-blankline.nvim'
   use {
@@ -67,8 +112,18 @@ require('packer').startup(function(use)
       vim.notify = require('notify')
     end,
   }
-  use 'liuchengxu/vista.vim'
-  use 'chentoast/marks.nvim'
+  use {
+    'liuchengxu/vista.vim',
+    config = function()
+      vim.g.vista_default_executive = 'nvim_lsp'
+    end,
+  }
+  use {
+    'chentoast/marks.nvim',
+    config = function()
+      require('marks').setup {}
+    end
+  }
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -78,12 +133,11 @@ require('packer').startup(function(use)
       "MunifTanjim/nui.nvim",
     }
   }
+  use 'famiu/bufdelete.nvim'
 
   -- Eye candy
   use 'vim-airline/vim-airline'
-  use {
-    'vim-airline/vim-airline-themes',
-    requires = { 'vim-airline/vim-airline' } }
+  use 'vim-airline/vim-airline-themes'
   use 'powerline/fonts'
   use 'sainnhe/sonokai'
   use 'sainnhe/edge'
@@ -93,5 +147,10 @@ require('packer').startup(function(use)
   use 'ludovicchabant/vim-lawrencium'
   use 'flazz/vim-colorschemes'
   use 'ryanoasis/vim-devicons'
-  use 'j-hui/fidget.nvim'
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup {}
+    end
+  }
 end)
