@@ -1,4 +1,4 @@
-do  -- Settings.
+do -- Settings.
   -- Required by hrsh7th/nvim-cmp.
   vim.o.completeopt = 'menu,menuone,noselect'
 
@@ -36,7 +36,7 @@ end
 -- TODO(neovim/neovim#12378): Migrate this to native lua when autocmds work.
 vim.cmd('source ~/.vim/functions.vim')
 
-do  -- Pre-plugin
+do -- Pre-plugin
   -- sainnhe/sonokai
   vim.g.sonokai_style = 'andromeda'
 
@@ -60,14 +60,17 @@ do  -- Pre-plugin
     rs = '',
     rlib = ''
   }
+
+  -- Neo-tree: remove the deprecated commands from v1.x.
+  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 end
 
 -- Plugins.
 require('neo.plugins')
 
-vim.cmd[[colorscheme sonokai]]
+vim.cmd [[colorscheme sonokai]]
 
-do  -- nvim-cmp for autocompletion.
+do -- nvim-cmp for autocompletion.
   -- Setup nvim-cmp.
   local cmp = require('cmp')
   local types = require('cmp.types')
@@ -86,14 +89,11 @@ do  -- nvim-cmp for autocompletion.
         luasnip.lsp_expand(args.body) -- For `luasnip` users.
       end,
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
+      ['<C-y>'] = cmp.mapping.confirm({ select = false }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -116,9 +116,10 @@ do  -- nvim-cmp for autocompletion.
           fallback()
         end
       end, { 'i', 's' }),
-    },
+    }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
+      { name = 'nvim_lsp_signature_help' },
       { name = 'luasnip' }, -- For luasnip users.
     }, {
       { name = 'buffer' },
@@ -128,7 +129,7 @@ do  -- nvim-cmp for autocompletion.
         with_text = false, -- do not show text alongside icons
         -- The function below will be called before any actual modifications from lspkind
         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-        before = function (entry, vim_item)
+        before = function(entry, vim_item)
           local word = entry:get_insert_text()
           if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
             word = vim.lsp.util.parse_snippet(word)
@@ -161,7 +162,7 @@ do  -- nvim-cmp for autocompletion.
   })
 end
 
-do  -- lspconfig
+do -- lspconfig
   local nvim_lsp = require('lspconfig')
   pcall(require, 'neo.custom_lsp')
 
@@ -169,10 +170,6 @@ do  -- lspconfig
   vim.cmd 'au BufWritePre *.cc,*.h,*.lua,*.rs,*.c,*.ts,*.borg,*BUILD,*.java lua vim.lsp.buf.formatting_sync()'
 
   local on_attach = function(_client, bufnr)
-     -- Omni-completion via LSP. See `:help compl-omni`. Use <C-x><C-o> in
-    -- insert mode. Or use an external autocompleter (see below) for a
-    -- smoother UX.
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.
       vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
     end
@@ -183,7 +180,7 @@ do  -- lspconfig
     end
 
     -- LSP bindings
-    local opts = { noremap=true}
+    local opts = { noremap = true }
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -191,7 +188,8 @@ do  -- lspconfig
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl',
+      '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -224,10 +222,8 @@ do  -- lspconfig
 
   nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 
-  --nvim_lsp.ciderlsp.setup { on_attach = on_attach, capabilities = capabilities }
-
   local opts = {
-    server = { cmd = {'rustup', 'run', 'nightly', 'rust-analyzer'}, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
+    server = { cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' }, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
   }
   require('rust-tools').setup(opts)
 
@@ -246,7 +242,7 @@ do  -- lspconfig
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -259,17 +255,26 @@ do  -- lspconfig
       },
     },
   }
+
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+  vim.diagnostic.config({
+    update_in_insert = true,
+  })
 end
 
-do  -- Vista.vim
+do -- Vista.vim
   vim.g.vista_default_executive = 'nvim_lsp'
 end
 
-do  -- Telescope.nvim
+do -- Telescope.nvim
   require('telescope').load_extension('fzf')
 end
 
-do  -- treesitter.
+do -- treesitter.
   require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     highlight = {
@@ -292,11 +297,15 @@ do  -- treesitter.
   }
 end
 
-do  -- marks.nvim.
-  require('marks').setup{}
+do -- marks.nvim.
+  require('marks').setup {}
 end
 
-do  -- Keybindings.
+do -- fidget.nvim.
+  require('fidget').setup {}
+end
+
+do -- Keybindings.
   search_dirs = nil
   function find_search_dirs()
     if search_dirs then
@@ -305,7 +314,7 @@ do  -- Keybindings.
     local loaded, dirs = pcall(require, 'neo.search_dirs')
     if loaded then
       for key, value in pairs(dirs) do
-        if vim.fn.getcwd():sub(-#key) == key then
+        if vim.fn.getcwd():sub(- #key) == key then
           search_dirs = value
           return value
         end
@@ -315,10 +324,10 @@ do  -- Keybindings.
     return {}
   end
 
-  local function map(lhs, rhs, mode, expr)    -- wait for lua keymaps: neovim/neovim#13823
+  local function map(lhs, rhs, mode, expr) -- wait for lua keymaps: neovim/neovim#13823
     mode = mode or 'n'
     if mode == 'n' then rhs = '<cmd>' .. rhs .. '<cr>' end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, {noremap=true, silent=true, expr=expr})
+    vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true, expr = expr })
   end
 
   map('<C-n>', 'tabnew')
@@ -334,9 +343,9 @@ do  -- Keybindings.
   vim.cmd 'au FileType java nnoremap <Leader>T :call ToggleTestJava(1)<CR>'
 
   if vim.fn.has('unix') then
-    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "/"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "/"<CR>', { noremap = true })
   else
-    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "\\"<CR>', {noremap=true})
+    vim.api.nvim_set_keymap('n', '<Leader>E', ':e <C-R>=expand("%:p:h") . "\\"<CR>', { noremap = true })
   end
 
   map('<M-h>', '<C-w>h', '')
@@ -349,7 +358,7 @@ do  -- Keybindings.
   map('<M-S-k>', '<C-w>K', '')
   map('<M-S-l>', '<C-w>L', '')
 
-  map('<M-f>', 'Ex')
+  map('<M-f>', 'Neotree toggle reveal')
   map('<M-d>', 'b #<CR>:bd #')
   map('<M-r>', '<C-^>', '')
   map('<M-o>', 'call CurtineIncSw()')
