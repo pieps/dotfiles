@@ -167,7 +167,7 @@ do -- lspconfig
   pcall(require, 'neo.custom_lsp')
 
   --- auto-commands
-  vim.cmd 'au BufWritePre *.cc,*.h,*.lua,*.rs,*.c,*.ts,*.borg,*BUILD,*.java lua vim.lsp.buf.formatting_sync()'
+  vim.cmd 'au BufWritePre *.cc,*.h,*.lua,*.rs,*.c,*.ts,*.borg,*BUILD,*.java lua vim.lsp.buf.format()'
 
   local on_attach = function(_client, bufnr)
     if vim.lsp.formatexpr then -- Neovim v0.6.0+ only.
@@ -206,7 +206,7 @@ do -- lspconfig
 
     vim.api.nvim_command('augroup LSP')
     vim.api.nvim_command('autocmd!')
-    if _client.resolved_capabilities.document_highlight then
+    if _client.server_capabilities.document_highlight then
       vim.api.nvim_command('autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()')
       vim.api.nvim_command('autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()')
       vim.api.nvim_command('autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()')
