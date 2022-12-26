@@ -60,13 +60,23 @@ do -- Pre-plugin
     rs = '',
     rlib = ''
   }
-
-  -- Neo-tree: remove the deprecated commands from v1.x.
-  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 end
 
 -- Plugins.
-require('neo.plugins')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.runtimepath:prepend(lazypath)
+require('lazy').setup('config.plugins')
+--require('neo.plugins')
 
 vim.cmd [[colorscheme sonokai]]
 
@@ -319,7 +329,6 @@ do -- Keybindings.
   map('<M-S-k>', '<C-w>K', '')
   map('<M-S-l>', '<C-w>L', '')
 
-  map('<M-f>', 'Neotree toggle reveal')
   map('<M-d>', 'b #<CR>:bd #')
   map('<M-r>', '<C-^>', '')
   map('<M-o>', 'call CurtineIncSw()')
