@@ -1,5 +1,7 @@
+local util = require('config.util')
+
 local M = {
-  'rcarriga/nvim-notify',
+  util.gh('rcarriga/nvim-notify'),
 }
 
 function M.config()

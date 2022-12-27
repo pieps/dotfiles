@@ -1,11 +1,13 @@
+local util = require('config.util')
+
 local M = {
-  'hrsh7th/nvim-cmp',
+  util.gh('hrsh7th/nvim-cmp'),
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'onsails/lspkind-nvim',
+    util.gh('hrsh7th/cmp-nvim-lsp'),
+    util.gh('hrsh7th/cmp-buffer'),
+    util.gh('hrsh7th/cmp-path'),
+    util.gh('hrsh7th/cmp-cmdline'),
+    util.gh('onsails/lspkind-nvim'),
   },
 }
 

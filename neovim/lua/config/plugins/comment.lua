@@ -1,5 +1,7 @@
+local util = require('config.util')
+
 local M = {
-  'terrortylor/nvim-comment',
+  util.gh('terrortylor/nvim-comment'),
 }
 
 function M.config()

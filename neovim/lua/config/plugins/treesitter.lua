@@ -1,10 +1,12 @@
+local util = require('config.util')
+
 local M = {
-  'nvim-treesitter/nvim-treesitter',
+  util.gh('nvim-treesitter/nvim-treesitter'),
   build = ':TSUpdate',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-refactor',
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    'nvim-treesitter/playground',
+    util.gh('nvim-treesitter/nvim-treesitter-refactor'),
+    util.gh('nvim-treesitter/nvim-treesitter-textobjects'),
+    util.gh('nvim-treesitter/playground'),
   },
 }
 
