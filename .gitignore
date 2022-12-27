@@ -46,3 +46,4 @@ vim/.netrwbook
 neovim/plugin
 neovim/lua/neo/search_dirs.lua
 neovim/lua/neo/custom_lsp.lua
+neovim/lua/config/plugins/telescope-codesearch.lua

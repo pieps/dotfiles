@@ -112,7 +112,6 @@ require('packer').startup(function(use)
       vim.notify = require('notify')
     end,
   }
-  use { 'sso://googler@user/vintharas/telescope-codesearch.nvim', after = { 'telescope.nvim' } }
   use {
     'liuchengxu/vista.vim',
     config = function()
