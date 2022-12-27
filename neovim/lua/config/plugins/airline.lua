@@ -1,7 +1,9 @@
+local util = require('config.util')
+
 local M = {
-  'vim-airline/vim-airline',
-  'vim-airline/vim-airline-themes',
-  'powerline/fonts',
+  util.gh('vim-airline/vim-airline'),
+  util.gh('vim-airline/vim-airline-themes'),
+  util.gh('powerline/fonts'),
 }
 
 function M.config()

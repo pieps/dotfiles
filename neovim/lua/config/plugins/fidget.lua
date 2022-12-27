@@ -1,5 +1,7 @@
+local util = require('config.util')
+
 local M = {
-  'j-hui/fidget.nvim',
+  util.gh('j-hui/fidget.nvim'),
   config = true,
 }
 

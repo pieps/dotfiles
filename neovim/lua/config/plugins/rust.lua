@@ -1,9 +1,11 @@
+local util = require('config.util')
+
 local M = {
-  'rust-lang/rust.vim',
-  { 'simrat39/rust-tools.nvim',
+  util.gh('rust-lang/rust.vim'),
+  { util.gh('simrat39/rust-tools.nvim'),
     dependencies = {
-      'mfussenegger/nvim-dap',
-      'nvim-lua/plenary.nvim'
+      util.gh('mfussenegger/nvim-dap'),
+      util.gh('nvim-lua/plenary.nvim')
     },
   }
 }

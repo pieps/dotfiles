@@ -1,5 +1,7 @@
+local util = require('config.util')
+
 local M = {
-  'liuchengxu/vista.vim',
+  util.gh('liuchengxu/vista.vim'),
 }
 
 function M.config()

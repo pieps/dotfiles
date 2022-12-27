@@ -1,5 +1,7 @@
+local util = require('config.util')
+
 local M = {
-  'sainnhe/sonokai',
+  util.gh('sainnhe/sonokai'),
 }
 
 function M.config()

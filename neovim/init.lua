@@ -44,11 +44,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.runtimepath:prepend(lazypath)
-require('lazy').setup('config.plugins')
-
-do -- lspconfig
-  pcall(require, 'neo.custom_lsp')
-end
+require('lazy').setup('config.plugins', { git = { url_format = '%s' } })
 
 vim.cmd [[colorscheme sonokai]]
 

@@ -1,5 +1,7 @@
-local M = { 
-  'ryanoasis/vim-devicons',
+local util = require('config.util')
+
+local M = {
+  util.gh('ryanoasis/vim-devicons'),
 }
 
 function M.config()
