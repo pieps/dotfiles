@@ -18,4 +18,6 @@ return {
   util.gh('Mcmartelle/vim-monokai-bold'),
   util.gh('ludovicchabant/vim-lawrencium'),
   util.gh('flazz/vim-colorschemes'),
+  util.gh('vim-airline/vim-airline-themes'),
+  util.gh('powerline/fonts'),
 }
