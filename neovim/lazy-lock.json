@@ -32,7 +32,6 @@
   "rust-tools.nvim": { "branch": "master", "commit": "99fd1238c6068d0637df30b6cee9a264334015e9" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
   "sonokai": { "branch": "master", "commit": "a2a648b709bc52d64504ba4fddedc25690029d8d" },
-  "telescope-codesearch.nvim": { "branch": "main", "commit": "a26077ad3c68cf897ae1c31da903d6516ebb9c92" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "fab3e2212e206f4f8b3bbaa656e129443c9b802e" },
   "telescope.nvim": { "branch": "master", "commit": "e960efa60e97df58e089b00270f09d60f27202c8" },
   "typescript-vim": { "branch": "master", "commit": "52f3ca3474d51f5021696ffb7297d989e49121ac" },

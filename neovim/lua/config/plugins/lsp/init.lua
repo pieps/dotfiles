@@ -10,7 +10,6 @@ local M = {
 
 function M.config()
   local nvim_lsp = require('lspconfig')
-  pcall(require, 'neo.custom_lsp')
   require('config.plugins.lsp.diagnostics').setup()
 
   --- auto-commands
@@ -33,6 +32,11 @@ function M.config()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   -- Enable the following language servers
+  local loaded, custom_lsp = pcall(require, 'neo.custom_lsp')
+  if loaded then
+    custom_lsp.setup()
+  end
+
   nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
 
   nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }

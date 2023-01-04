@@ -6,6 +6,7 @@ local M = {
 
 function M.config()
   vim.g.sonokai_style = 'andromeda'
+  vim.cmd [[colorscheme sonokai]]
 end
 
 return M
