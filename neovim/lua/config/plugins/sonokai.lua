@@ -2,6 +2,8 @@ local util = require('config.util')
 
 local M = {
   util.gh('sainnhe/sonokai'),
+  lazy = false,
+  priority = 1000,
 }
 
 function M.config()
