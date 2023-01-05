@@ -4,7 +4,7 @@ local M = {
   util.gh('vim-airline/vim-airline'),
 }
 
-function M.config()
+function M.init()
   vim.g.airline_powerline_fonts = 1
   vim.g['airline#extensions#ale#enabled'] = 1
   vim.g['airline#extensions#bufferline#enabled'] = 1
