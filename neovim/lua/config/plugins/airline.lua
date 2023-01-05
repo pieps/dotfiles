@@ -2,6 +2,7 @@ local util = require('config.util')
 
 local M = {
   util.gh('vim-airline/vim-airline'),
+  enabled = false,
 }
 
 function M.init()
