@@ -6,7 +6,7 @@ local M = {
   cmd = 'Neotree',
   dependencies = {
     util.gh('nvim-lua/plenary.nvim'),
-    util.gh('kyazdani42/nvim-web-devicons'), -- not strictly required, but recommended
+    util.gh('nvim-tree/nvim-web-devicons'), -- not strictly required, but recommended
     util.gh('MunifTanjim/nui.nvim'),
   },
   keys = {

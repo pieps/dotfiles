@@ -34,10 +34,12 @@ function M.config()
   -- Enable the following language servers
   local loaded, custom_lsp = pcall(require, 'neo.custom_lsp')
   if loaded then
-    custom_lsp.setup()
+    custom_lsp.setup(on_attach, capabilities)
+  else
+    require('notify')("Couldn't load custom LSP!")
   end
 
-  nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
+  -- nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
 
   nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 
