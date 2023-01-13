@@ -2,7 +2,7 @@ local util = require('config.util')
 
 local M = {
   util.gh('nvim-tree/nvim-web-devicons'),
-  config = {
+  opts = {
     override = {
       rlib = {
         icon = '',

@@ -6,7 +6,7 @@ local M = {
     util.gh('nvim-tree/nvim-web-devicons'),
     util.gh('kdheepak/tabline.nvim'),
   },
-  config = {
+  opts = {
     options = {
       extensions = { 'neo-tree', 'quickfix' }
     },

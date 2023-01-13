@@ -26,21 +26,21 @@ function M.setup(_client, buffer)
     },
     ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help', mode = { 'n', 'i' } },
     ['['] = {
-      d = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev Diagnostic.'},
+      d = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Prev Diagnostic.' },
     },
     [']'] = {
-      d = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Next Diagnostic.'},
+      d = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Next Diagnostic.' },
     },
-    ['K'] = {  '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover'},
+    ['K'] = { '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
     g = {
       name = '+goto',
-      ['0'] =  { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'List Symbols in Buffer' },
-      ['D'] ={ '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Goto Declaration' } ,
+      ['0'] = { '<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'List Symbols in Buffer' },
+      ['D'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Goto Declaration' },
       ['W'] = { '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'List Symbols in Workspace' },
-      d ={ '<cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' } ,
+      d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Goto Implementation' },
       r = { '<cmd>lua vim.lsp.buf.references()<CR>', 'Goto References' },
-      t = {  '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' },
+      t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Goto Type Definition' },
     },
   }
 
