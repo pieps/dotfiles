@@ -17,7 +17,11 @@ function M.config()
   telescope.setup {
     defaults = {
       mappings = {
-        i = { ['<c-t>'] = trouble.open_with_trouble },
+        i = {
+          ['<c-t>'] = trouble.open_with_trouble,
+          ["<c-j>"] = require('telescope.actions').cycle_history_next,
+          ["<c-k>"] = require('telescope.actions').cycle_history_prev,
+        },
         n = { ['<c-t>'] = trouble.open_with_trouble },
       },
     },
