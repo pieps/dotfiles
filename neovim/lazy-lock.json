@@ -1,6 +1,7 @@
 {
   "CurtineIncSw.vim": { "branch": "master", "commit": "0b369f4c7a4c6e0a813a83e54aca855a9140a757" },
   "LuaSnip": { "branch": "master", "commit": "b4bc24c4925aeb05fd47d2ee9b24b7f73f5d7e32" },
+  "ai.nvim": { "branch": "main", "commit": "d7391d4782b90ad3501f6f716f2b308092981787" },
   "bufdelete.nvim": { "branch": "master", "commit": "8933abc09df6c381d47dc271b1ee5d266541448e" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "5af1bb7d722ef8a96658f01d6eb219c4cf746b32" },
