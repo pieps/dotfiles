@@ -47,7 +47,6 @@ local keys = {
   ['<M-/>'] = { '<cmd>History/<CR>', 'Open search history' },
   ['<M-;>'] = { '<cmd>History:<CR>', 'Open command history' },
 
-  ['<M-q>'] = { '<cmd>QFix<CR>', 'Open quickfix window' },
   ['<M-w>'] = { '<cmd>cp<CR>', 'Go to previous error in quickfix list' },
   ['<M-e>'] = { '<cmd>cn<CR>', 'Go to next error in quickfix list' },
 
