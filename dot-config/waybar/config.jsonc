@@ -1,85 +1,85 @@
 {
-    "position": "top",
-    "layer": "top",
-    "height": 16,
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "modules-left": [
-      "custom/launcher",
-      "wlr/workspaces",
-      "custom/playerctl",
-      "custom/playerlabel"
-    ],
-    "modules-center": [
-      "battery",
-      "cpu", 
-      "memory", 
-      "disk",
-      "network"
-    ],
-    "modules-right": [
-      "tray", 
-      "pulseaudio", 
-      "clock"],
-    // Modules configuration
-	"clock": {
-		"format": " {:%H:%M}",
-		"tooltip": "true",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": " {:%d/%m}"
-	},
-	
-
-	"wlr/workspaces": {
-        "active-only": false,
-        "all-outputs": true,
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace e-1",
-        "on-scroll-down": "hyprctl dispatch workspace e+1",
-		"format": "{icon}",
-		"on-click": "activate",
-		"format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
-            "default": "",
-    "sort-by-number": true
+  "position": "top",
+  "layer": "top",
+  "height": 16,
+  "margin-top": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "modules-left": [
+    "clock",
+    "custom/weather",
+    "wlr/workspaces",
+    "custom/playerctl",
+    "custom/playerlabel"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray", 
+    "network",
+    "custom/updates",
+    "pulseaudio", 
+    "battery"
+  ],
+  // Modules configuration
+  "clock": {
+    "format": " {:%R}  {:%d/%m}",
+    "tooltip": "true",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "hyprland/window": {
+    "format": "{}"
+  },
+  "wlr/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      "active": "",
+      "default": "",
+      "sort-by-number": true
     }
   },
 
-    "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#6791eb'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#cdd6f4'>󰒮 󰏥 󰒭</span>"
-      }
-    },
+  "custom/playerctl": {
+    "format": "{icon}",
+    "return-type": "json",
+    "max-length": 64,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click-middle": "playerctl play-pause",
+    "on-click": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "format-icons": {
+      "Playing": "<span foreground='#6791eb'>󰒮 󰐌 󰒭</span>",
+      "Paused": "<span foreground='#cdd6f4'>󰒮 󰏥 󰒭</span>"
+    }
+  },
 
-    "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#6791eb'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#cdd6f4'>󰒮 󰏥 󰒭</span>"
-      }
-    },
+  "custom/playerlabel": {
+    "format": "<span>{}</span>",
+    "return-type": "json",
+    "max-length": 48,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click-middle": "playerctl play-pause",
+    "on-click": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "format-icons": {
+      "Playing": "<span foreground='#6791eb'>󰒮 󰐌 󰒭</span>",
+      "Paused": "<span foreground='#cdd6f4'>󰒮 󰏥 󰒭</span>"
+    }
+  },
 
 	"battery": {
         "states": {
@@ -114,6 +114,11 @@
     "interval": 5,
     "path": "/"
   },
+  "custom/updates": {
+    "exec": "(pamac checkupdates -q) | wc -l",
+    "interval": 7200,
+    "format": " {}"
+  },
 	
 	"network": {
         	"format-wifi": "󰤨",
@@ -124,7 +129,13 @@
           "tooltip-format": "{essid}",
           "on-click-right": "nm-connection-editor"
 	},
-
+  "custom/weather" : {
+    "tooltip" : true,
+    "format" : "{}",
+    "restart-interval" : 300,
+    "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+    "return-type" : "json"
+  },
 	"tray": {
 		"icon-size": 16,
 		"spacing": 5
