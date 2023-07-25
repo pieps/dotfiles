@@ -33,4 +33,3 @@ grace-no-mouse
 grace-no-touch
 datestr="%d.%m"
 fade-in="1.0"
-ignore-empty-password
