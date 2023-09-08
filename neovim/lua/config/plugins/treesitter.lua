@@ -12,7 +12,13 @@ local M = {
 
 function M.config()
   require('nvim-treesitter.configs').setup {
-    ensure_installed = 'all',
+    ensure_installed = {
+      'c', 'cmake', 'cpp', 'css', 'csv', 'dockerfile', 'dot', 'fish',
+      'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
+      'go', 'html', 'java', 'javascript', 'json', 'kotlin', 'lua', 'make',
+      'markdown', 'ninja', 'nix', 'proto', 'python', 'regex', 'rust', 'sql',
+      'starlark', 'toml', 'typescript', 'vim', 'vimdoc', 'yaml',
+    },
     highlight = {
       enable = true,
     },
