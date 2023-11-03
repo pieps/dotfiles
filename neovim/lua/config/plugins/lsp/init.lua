@@ -44,7 +44,7 @@ function M.config()
   nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
 
   local opts = {
-    server = { cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' }, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
+    server = { cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' }, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
   }
   require('rust-tools').setup(opts)
 
