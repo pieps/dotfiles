@@ -19,9 +19,9 @@ function M.toggle_test_java(split)
   local cur_file = vim.fn.expand('%:p')
   local new_file = nil
   if cur_file:find('javatests/') then
-    new_file = cur_file:gsub('javatests/', 'java/', 1):gsub('Test%.java', '.java')
+    new_file = cur_file:gsub('javatests/', 'java/', 1):gsub('Test%.(.+)$', '.%1')
   elseif cur_file:find('java/') then
-    new_file = cur_file:gsub('java/', 'javatests/', 1):gsub('%.java', 'Test.java')
+    new_file = cur_file:gsub('java/', 'javatests/', 1):gsub('%.(.+)$', 'Test.%1')
   end
 
   local win_nr = vim.fn.winnr('$')

@@ -13,14 +13,29 @@ function M.config()
   require('config.plugins.lsp.diagnostics').setup()
 
   --- auto-commands
-  vim.cmd 'au BufWritePre *.cc,*.h,*.lua,*.rs,*.c,*.ts,*.borg,*BUILD,*.java lua vim.lsp.buf.format()'
+  vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+    pattern = { '*.cc', '*.h', '*.lua', '*.rs', '*.c', '*.ts', '*.borg', '*BUILD', '*.java', '*.py' },
+    callback = function() vim.lsp.buf.format({ timeout_ms = 3000 }) end
+  })
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    pattern = { '*.kt' },
+    command = 'silent! !/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt <afile>'
+  })
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    pattern = { '*.kt' },
+    command = 'edit'
+  })
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    pattern = { '*.kt' },
+    command = 'redraw!'
+  })
 
   local on_attach = function(client, bufnr)
     require('config.plugins.lsp.keys').setup(client, bufnr)
 
     vim.api.nvim_command('augroup LSP')
     vim.api.nvim_command('autocmd!')
-    if client.server_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
       vim.api.nvim_command('autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()')
       vim.api.nvim_command('autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()')
       vim.api.nvim_command('autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()')
