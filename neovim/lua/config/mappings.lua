@@ -1,7 +1,7 @@
 local wk = require('which-key')
 
-vim.cmd 'au FileType java nnoremap <silent> <Leader>t :lua require("config.util").toggle_test_java(false)<CR>'
-vim.cmd 'au FileType java nnoremap <silent> <Leader>T :lua require("config.util").toggle_test_java(true)<CR>'
+vim.cmd 'au FileType java,kotlin nnoremap <silent> <Leader>t :lua require("config.util").toggle_test_java(false)<CR>'
+vim.cmd 'au FileType java,kotlin nnoremap <silent> <Leader>T :lua require("config.util").toggle_test_java(true)<CR>'
 vim.keymap.set('n', "'", '`')
 vim.keymap.set('n', '`', "'")
 vim.keymap.set('n', '<C-e>', '3<C-e>')
