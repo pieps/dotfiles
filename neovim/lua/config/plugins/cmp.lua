@@ -30,6 +30,12 @@ function M.config()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
   end
 
+  local loaded, custom_cmp = pcall(require, 'neo.custom_cmp')
+  local custom_sources = {}
+  if loaded then
+    custom_sources = custom_cmp
+  end
+
   cmp.setup({
     snippet = {
       expand = function(args)
@@ -68,6 +74,7 @@ function M.config()
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
       { name = 'luasnip' }, -- For luasnip users.
+      custom_sources,
     }, {
       { name = 'buffer' },
     }),
