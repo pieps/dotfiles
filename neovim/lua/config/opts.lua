@@ -24,3 +24,6 @@ vim.o.scrolloff = 3
 
 -- Disable keycode delays.
 vim.g.ttimeoutlen = 0
+
+-- Disable default python style.
+vim.g.python_recommended_style = 0

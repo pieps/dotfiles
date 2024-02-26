@@ -7,11 +7,11 @@ return {
   util.gh('ericcurtin/CurtineIncSw.vim'),
   util.gh('tpope/vim-vinegar'),
   util.gh('troydm/zoomwintab.vim'),
-  util.gh('lukas-reineke/indent-blankline.nvim'),
+  { util.gh('lukas-reineke/indent-blankline.nvim'), main = 'ibl', opts = {}, config = true },
   util.gh('famiu/bufdelete.nvim'),
   util.gh('folke/which-key.nvim'),
 
-  -- Eye candy,
+  -- Eye candy.
   util.gh('sainnhe/edge'),
   util.gh('arzg/vim-colors-xcode'),
   util.gh('sickill/vim-monokai'),
@@ -20,4 +20,7 @@ return {
   util.gh('flazz/vim-colorschemes'),
   util.gh('vim-airline/vim-airline-themes'),
   util.gh('powerline/fonts'),
+
+  -- Work stuff.
+  { import = 'config.plugins.work' },
 }
