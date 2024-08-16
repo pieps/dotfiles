@@ -85,9 +85,6 @@ function M.config()
         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
         before = function(entry, vim_item)
           local word = entry:get_insert_text()
-          if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
-            word = vim.lsp.util.parse_snippet(word)
-          end
           word = str.oneline(word)
           if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
             word = word .. '~'
