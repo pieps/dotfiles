@@ -7,6 +7,7 @@ local M = {
     util.gh('hrsh7th/cmp-buffer'),
     util.gh('hrsh7th/cmp-path'),
     util.gh('hrsh7th/cmp-cmdline'),
+    util.gh('hrsh7th/cmp-nvim-lsp-signature-help'),
     util.gh('onsails/lspkind-nvim'),
   },
 }
@@ -74,8 +75,7 @@ function M.config()
       { name = 'nvim_lsp' },
       { name = 'nvim_lsp_signature_help' },
       { name = 'luasnip' }, -- For luasnip users.
-      custom_sources,
-    }, {
+    }, custom_sources, {
       { name = 'buffer' },
     }),
     formatting = {
