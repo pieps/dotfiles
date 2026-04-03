@@ -1,4 +1,0 @@
-# ~/.config/starship.toml
-
-# Move the directory to the second line
-format = '$all$directory$character'
