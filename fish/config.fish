@@ -8,3 +8,8 @@ end
 if [ "$XDG_SESSION_TYPE" = "wayland" ]
   export MOZ_ENABLE_WAYLAND=1
 end
+
+if status is-interactive
+  # Commands to run in interactive sessions can go here
+  starship init fish | source
+end
