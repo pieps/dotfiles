@@ -4,14 +4,14 @@ local M = {
   util.gh('nvim-treesitter/nvim-treesitter'),
   build = ':TSUpdate',
   dependencies = {
-    util.gh('nvim-treesitter/nvim-treesitter-refactor'),
+    -- util.gh('nvim-treesitter/nvim-treesitter-context'),
+    -- util.gh('nvim-treesitter/nvim-treesitter-locals'),
     util.gh('nvim-treesitter/nvim-treesitter-textobjects'),
-    util.gh('nvim-treesitter/playground'),
   },
 }
 
 function M.config()
-  require('nvim-treesitter.configs').setup {
+  require('nvim-treesitter').setup {
     ensure_installed = 'all',
     highlight = {
       enable = true,

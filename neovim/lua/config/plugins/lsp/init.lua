@@ -9,7 +9,6 @@ local M = {
 }
 
 function M.config()
-  local nvim_lsp = require('lspconfig')
   require('config.plugins.lsp.diagnostics').setup()
 
   --- auto-commands
@@ -39,20 +38,19 @@ function M.config()
     require('notify')("Couldn't load custom LSP!")
   end
 
-  -- nvim_lsp.clangd.setup { on_attach = on_attach, capabilities = capabilities }
+  -- vim.lsp.config('clangd', { on_attach = on_attach, capabilities = capabilities })
+  -- vim.lsp.enable('clangd')
 
-  nvim_lsp.tsserver.setup { on_attach = on_attach, capabilities = capabilities }
+  vim.lsp.config('tsserver', 
+   { on_attach = on_attach, capabilities = capabilities })
+  vim.lsp.enable('tsserver')
 
-  local opts = {
-    server = { cmd = { 'rustup', 'run', 'nightly', 'rust-analyzer' }, on_attach = on_attach, capabilities = capabilities } -- rust-analyer options
-  }
-  require('rust-tools').setup(opts)
 
   local runtime_path = vim.split(package.path, ';')
   table.insert(runtime_path, 'lua/?.lua')
   table.insert(runtime_path, 'lua/?/init.lua')
 
-  nvim_lsp.lua_ls.setup {
+  vim.lsp.config('lua_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -81,7 +79,8 @@ function M.config()
         },
       },
     },
-  }
+  })
+  vim.lsp.enable('lua_ls')
 end
 
 return M
