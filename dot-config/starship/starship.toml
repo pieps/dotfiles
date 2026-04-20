@@ -51,13 +51,13 @@ conflicted = "="
 ahead =	"⇡${count}"
 behind = "⇣${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-up_to_date = ""
+up_to_date = "󰄬"
 untracked = "?${count}"
-stashed = ""
+stashed = "󰏖"
 modified = "!${count}"
 staged = "+${count}"
 renamed = "»${count}"
-deleted = "${count}"
+deleted = "󰅖${count}"
 
 [cmd_duration]
 min_time = 1
