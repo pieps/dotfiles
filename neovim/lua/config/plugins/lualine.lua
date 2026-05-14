@@ -10,6 +10,14 @@ local M = {
     options = {
       extensions = { 'neo-tree', 'quickfix' }
     },
+    sections = {
+      lualine_c = {
+        {
+          'filename',
+          path = 1,
+        }
+      }
+    }
   },
 }
 

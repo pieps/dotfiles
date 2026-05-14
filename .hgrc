@@ -55,6 +55,19 @@ mail.default-rev=only(., p4head)
 presubmit.default-rev=only(., p4head)
 upload.default-rev=.
 
+[templatealias]
+google_default_commit_description = '\n\nStartblock:\n  diffbase is submitted'
+# NOTE: Does not work if there are multiple BUG ids.
+google_compact_line_1_part_last = '{if(get_cl_tag("BUG"), 'http://b/{get_cl_tag("BUG")}')}'
+
+[google-change-tags]
+default.bug={get_parent_cl_tag("bug")}
+default.markdown=true
+default.want_lgtm=all
+default.startblock_autosubmit=yes
+default.autosubmit_behavior=SYNC_SUBMIT_CLEANUP
+default.r=startblock
+
 # GPG extension settings
 #[gpg]
 #key=<your private gpg key>

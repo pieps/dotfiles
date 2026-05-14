@@ -13,6 +13,7 @@
   "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
+  "conform.nvim": { "branch": "master", "commit": "372fc521f8421b7830ea6db4d6ea3bae1c77548c" },
   "critique-nvim": { "branch": "main", "commit": "8e0da4cedcffa087f54b67647c0aa43575387006" },
   "edge": { "branch": "master", "commit": "2de1aede94569f643de438391f6c8b1712038d35" },
   "fonts": { "branch": "master", "commit": "a029626780dd4af32f15a3e708a5b00528c22f1d" },

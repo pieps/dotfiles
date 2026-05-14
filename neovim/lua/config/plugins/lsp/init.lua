@@ -13,22 +13,22 @@ function M.config()
   require('config.plugins.lsp.diagnostics').setup()
 
   --- auto-commands
-  vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-    pattern = { '*.cc', '*.h', '*.lua', '*.rs', '*.c', '*.ts', '*.borg', '*BUILD', '*.java', '*.py' },
-    callback = function() vim.lsp.buf.format({ timeout_ms = 3000 }) end
-  })
-  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-    pattern = { '*.kt' },
-    command = 'silent! !/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt <afile>'
-  })
-  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-    pattern = { '*.kt' },
-    command = 'edit'
-  })
-  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-    pattern = { '*.kt' },
-    command = 'redraw!'
-  })
+  -- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  --   pattern = { '*.cc', '*.h', '*.lua', '*.rs', '*.c', '*.ts', '*.borg', '*BUILD', '*.java', '*.py' },
+  --   callback = function() vim.lsp.buf.format({ timeout_ms = 3000 }) end
+  -- })
+  -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  --   pattern = { '*.kt' },
+  --   command = 'silent! !/google/bin/releases/kotlin-google-eng/ktfmt/ktfmt <afile>'
+  -- })
+  -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  --   pattern = { '*.kt' },
+  --   command = 'edit'
+  -- })
+  -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  --   pattern = { '*.kt' },
+  --   command = 'redraw!'
+  -- })
 
   local on_attach = function(client, bufnr)
     require('config.plugins.lsp.keys').setup(client, bufnr)
