@@ -13,7 +13,7 @@ return {
 
   -- Eye candy.
   util.gh('sainnhe/edge'),
-  util.gh('arzg/vim-colors-xcode'),
+  util.gh('lunacookies/vim-colors-xcode'),
   util.gh('sickill/vim-monokai'),
   util.gh('Mcmartelle/vim-monokai-bold'),
   util.gh('ludovicchabant/vim-lawrencium'),

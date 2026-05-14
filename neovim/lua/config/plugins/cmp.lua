@@ -79,8 +79,8 @@ function M.config()
       { name = 'buffer' },
     }),
     formatting = {
+      fields = {'abbr', 'icon', 'menu'}, 
       format = lspkind.cmp_format({
-        with_text = false, -- do not show text alongside icons
         -- The function below will be called before any actual modifications from lspkind
         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
         before = function(entry, vim_item)
