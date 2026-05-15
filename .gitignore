@@ -49,4 +49,4 @@ neovim/coc-settings.json
 vim/.netrwbook
 neovim/plugin
 neovim/lua/neo/*
-neovim/lua/config/plugins/work/*
+neovim/lua/plugins/work/*
