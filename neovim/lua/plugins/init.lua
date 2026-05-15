@@ -19,5 +19,5 @@ return {
   'powerline/fonts',
 
   -- Work stuff.
-  { import = 'config.plugins.work' },
+  { import = 'plugins.work' },
 }

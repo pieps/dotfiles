@@ -16,15 +16,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
-require('config.plugins.lsp.diagnostics').setup()
 require("lazy").setup({
   spec = {
     -- import your plugins
-    { import = "config.plugins" },
+    { import = "plugins" },
   },
   -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
+  -- Colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
+  -- Automatically check for plugin updates
   checker = { enabled = true },
 })

@@ -7,8 +7,6 @@ local M = {
 }
 
 function M.config()
-  require('config.plugins.lsp.diagnostics').setup()
-
   --- auto-commands
   -- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   --   pattern = { '*.cc', '*.h', '*.lua', '*.rs', '*.c', '*.ts', '*.borg', '*BUILD', '*.java', '*.py' },
@@ -28,7 +26,7 @@ function M.config()
   -- })
 
   local on_attach = function(client, bufnr)
-    require('config.plugins.lsp.keys').setup(client, bufnr)
+    require('plugins.lsp.keys').setup(client, bufnr)
 
     vim.api.nvim_command('augroup LSP')
     vim.api.nvim_command('autocmd!')
