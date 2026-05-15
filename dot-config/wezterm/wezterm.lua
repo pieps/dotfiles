@@ -3,10 +3,10 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- Colorscheme
--- local catppuccin = wezterm.plugin.require('https://github.com/catppuccin/wezterm')
--- catppuccin.apply_to_config(config)
-local jabuti = wezterm.plugin.require('file:///Users/pieps/code/jabuti')
-jabuti.apply_to_config(config)
+local catppuccin = wezterm.plugin.require('https://github.com/catppuccin/wezterm')
+catppuccin.apply_to_config(config)
+-- local jabuti = wezterm.plugin.require('file:///Users/pieps/code/jabuti')
+-- jabuti.apply_to_config(config)
 
 -- Aesthetic Night Colorscheme
 config.bold_brightens_ansi_colors = true
