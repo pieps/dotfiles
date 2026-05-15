@@ -2,10 +2,6 @@ local M = {
   search_dirs = nil
 }
 
-function M.gh(url_fragment)
-  return string.format('https://github.com/%s.git', url_fragment)
-end
-
 function M.qfix_toggle(forced)
   local qfinfo = vim.fn.getqflist({ winid = 1 })
   if qfinfo.winid ~= 0 and not forced then

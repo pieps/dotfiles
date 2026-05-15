@@ -1,7 +1,5 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('sainnhe/sonokai'),
+  'sainnhe/sonokai',
   lazy = false,
   priority = 1000,
 }

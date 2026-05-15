@@ -1,7 +1,6 @@
-local util = require('config.util')
 
 local M = {
-  util.gh('stevearc/conform.nvim'),
+  'stevearc/conform.nvim',
   cmd = { 'ConformInfo' },
   ---@module 'conform'
   ---@type conform.setupOpts

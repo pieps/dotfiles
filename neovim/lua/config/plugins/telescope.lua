@@ -1,13 +1,11 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('nvim-telescope/telescope.nvim'),
+  'nvim-telescope/telescope.nvim',
   dependencies = {
     {
-      util.gh('nvim-telescope/telescope-fzf-native.nvim'),
+      'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
     },
-    util.gh('folke/trouble.nvim')
+    'folke/trouble.nvim'
   },
 }
 

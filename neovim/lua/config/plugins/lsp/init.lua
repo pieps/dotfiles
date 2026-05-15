@@ -1,10 +1,8 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('neovim/nvim-lspconfig'),
+  'neovim/nvim-lspconfig',
   event = 'BufReadPre',
   dependencies = {
-    util.gh('hrsh7th/cmp-nvim-lsp'),
+    'hrsh7th/cmp-nvim-lsp',
   }
 }
 

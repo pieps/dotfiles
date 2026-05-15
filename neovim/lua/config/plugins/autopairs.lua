@@ -1,9 +1,7 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('windwp/nvim-autopairs'),
+  'windwp/nvim-autopairs',
   dependencies = {
-    util.gh('hrsh7th/nvim-cmp'),
+    'hrsh7th/nvim-cmp',
   },
   event = 'BufRead',
 }

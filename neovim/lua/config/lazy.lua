@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require('config.plugins.lsp.diagnostics').setup()
 require("lazy").setup({
-  git = { url_format = "%s" },
   spec = {
     -- import your plugins
     { import = "config.plugins" },

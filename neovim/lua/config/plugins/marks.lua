@@ -1,7 +1,5 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('chentoast/marks.nvim'),
+  'chentoast/marks.nvim',
   config = true
 }
 

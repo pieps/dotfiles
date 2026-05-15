@@ -1,25 +1,22 @@
-local util = require('config.util')
-
 return {
-  util.gh('h-michael/lsp-ext.nvim'),
-  util.gh('tpope/vim-abolish'),
-  util.gh('leafgarland/typescript-vim'),
-  util.gh('ericcurtin/CurtineIncSw.vim'),
-  util.gh('tpope/vim-vinegar'),
-  util.gh('troydm/zoomwintab.vim'),
-  { util.gh('lukas-reineke/indent-blankline.nvim'), main = 'ibl', opts = {}, config = true },
-  util.gh('famiu/bufdelete.nvim'),
-  util.gh('folke/which-key.nvim'),
+  'h-michael/lsp-ext.nvim',
+  'tpope/vim-abolish',
+  'leafgarland/typescript-vim',
+  'ericcurtin/CurtineIncSw.vim',
+ 'tpope/vim-vinegar',
+  'troydm/zoomwintab.vim',
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {}, config = true },
+  'famiu/bufdelete.nvim',
+  'folke/which-key.nvim',
 
   -- Eye candy.
-  util.gh('sainnhe/edge'),
-  util.gh('lunacookies/vim-colors-xcode'),
-  util.gh('sickill/vim-monokai'),
-  util.gh('Mcmartelle/vim-monokai-bold'),
-  util.gh('ludovicchabant/vim-lawrencium'),
-  util.gh('flazz/vim-colorschemes'),
-  util.gh('vim-airline/vim-airline-themes'),
-  util.gh('powerline/fonts'),
+  'sainnhe/edge',
+  'sickill/vim-monokai',
+  'Mcmartelle/vim-monokai-bold',
+  'ludovicchabant/vim-lawrencium',
+  'flazz/vim-colorschemes',
+  'vim-airline/vim-airline-themes',
+  'powerline/fonts',
 
   -- Work stuff.
   { import = 'config.plugins.work' },

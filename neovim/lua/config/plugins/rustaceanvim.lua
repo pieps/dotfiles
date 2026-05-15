@@ -1,10 +1,8 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('mrcjkb/rustaceanvim'),
+  'mrcjkb/rustaceanvim',
   version = '^9',
   dependencies = {
-    util.gh('mfussenegger/nvim-dap'),
+    'mfussenegger/nvim-dap',
   },
 }
 

@@ -1,12 +1,10 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('nvim-treesitter/nvim-treesitter'),
+  'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
-    -- util.gh('nvim-treesitter/nvim-treesitter-context'),
-    -- util.gh('nvim-treesitter/nvim-treesitter-locals'),
-    util.gh('nvim-treesitter/nvim-treesitter-textobjects'),
+    -- 'nvim-treesitter/nvim-treesitter-context',
+    -- 'nvim-treesitter/nvim-treesitter-locals',
+    'nvim-treesitter/nvim-treesitter-textobjects',
   },
 }
 

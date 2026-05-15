@@ -1,10 +1,8 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('nvim-lualine/lualine.nvim'),
+  'nvim-lualine/lualine.nvim',
   dependencies = {
-    util.gh('nvim-tree/nvim-web-devicons'),
-    util.gh('kdheepak/tabline.nvim'),
+    'nvim-tree/nvim-web-devicons',
+    'kdheepak/tabline.nvim',
   },
   opts = {
     options = {

@@ -1,9 +1,7 @@
-local util = require('config.util')
-
 local M = {
-  util.gh('folke/trouble.nvim'),
+  'folke/trouble.nvim',
   dependencies = {
-    util.gh('nvim-tree/nvim-web-devicons'),
+    'nvim-tree/nvim-web-devicons',
   },
   config = true,
   keys = {
