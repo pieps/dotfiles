@@ -28,6 +28,7 @@ fish/completions
 fish/conf.d
 fish/fish_variables
 fish/functions/_*
+fish/functions/apido.fish
 fish/functions/citc_tmux_create_detached.fish
 fish/functions/cn.fish
 fish/functions/fish_mode_prompt.fish
