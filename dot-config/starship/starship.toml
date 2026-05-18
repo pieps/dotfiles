@@ -7,7 +7,7 @@ palette = "Jabuti"
 
 # Setups
 format="$directory$git_branch$character"
-right_format = """$git_status$cmd_duration"""
+right_format = """$git_status$cmd_duration$hostname"""
 add_newline = false 
 
 # Other languages configurations:
@@ -64,6 +64,9 @@ min_time = 1
 # duration & style 
 format = "[]($style)[[󰔚 ](bg:base fg:flamingo bold)$duration](bg:base fg:text)[ ]($style)"
 disabled = false
+style = "bg:none fg:base"
+
+[hostname]
 style = "bg:none fg:base"
 
 [palettes.Jabuti]
