@@ -37,12 +37,12 @@ config.text_background_opacity = 0.8
 -- config.inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 }
 
 -- Padding
--- config.window_padding = {
---   left = 25,
---   right = 25,
---   top = 25,
---   bottom = 25,
--- }
+config.window_padding = {
+  left = 1,
+  right = 1,
+  top = 0,
+  bottom = 0,
+}
 
 -- Tab Bar
 config.hide_tab_bar_if_only_one_tab = true
